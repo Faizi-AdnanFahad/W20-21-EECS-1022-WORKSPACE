@@ -30,7 +30,7 @@ public class Member {
 	
 	/* Exercise (after reading the written notes)*/
 	public double getPaymentDue() {
-		// go over the facilites of the member, and add up the price * unit of each booked facility.
+		// go over the facilities of the member, and add up the price * unit of each booked facility.
 		return -1;
 	}
 	
