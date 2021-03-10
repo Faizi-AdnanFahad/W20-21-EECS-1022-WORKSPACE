@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import model.Facility;
 import model.Member;
 import model.Trainer;
 
@@ -110,6 +111,20 @@ public class TestMember {
 		alan.swapTrainer(mark);
 		assertTrue(alan.getTrainer() != null && alan.getTrainer() == jared);
 		assertTrue(mark.getTrainer() != null && mark.getTrainer() == jon);
+		
+		Facility gym = new Facility("Gym", 1, 2);
+		Facility spa = new Facility("Spa", 2, 2);
+		Facility tennis = new Facility("Tennis", 3, 2);
+		
+		alan.registerFacility(gym);
+		alan.registerFacility(spa);
+		alan.registerFacility(tennis);
+		
+		double result = alan.getPaymentDue();
+		
+		
+		
+		
 	}
 	
 	

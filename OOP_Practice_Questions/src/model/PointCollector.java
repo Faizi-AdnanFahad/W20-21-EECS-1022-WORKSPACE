@@ -6,11 +6,12 @@ public class PointCollector {
 	Point[] points;
 	private int nop;
 	
-	/* Constructor */
+	/* Constructor */// --> Constructor does not have any return value nor does it have any "void".
 	public PointCollector() {
 		this.points = new Point[100];
 	}
 	
+	/* Mutator */
 	public void addPoints(double x, double y) { 
 		this.points[this.nop] = new Point(x, y);
 		this.nop ++;
@@ -21,6 +22,7 @@ public class PointCollector {
 		int countI = 0;
 		
 		Point[] arrayPoints = new Point[this.nop];
+		
 		for (int i = 0; i < nop; i ++) {
 			Point p = this.points[i];
 			
@@ -37,7 +39,6 @@ public class PointCollector {
 		
 		return firstQ;
 	}
-	
 	
 	public int getNumberOfPoints() {
 		return this.nop;

@@ -30,8 +30,12 @@ public class Member {
 	
 	/* Exercise (after reading the written notes)*/
 	public double getPaymentDue() {
-		// go over the facilities of the member, and add up the price * unit of each booked facility.
-		return -1;
+		// go over the facilities of the member, and add up the (price * unit) of each booked facility.
+		double sum = 0;
+		for (int i = 0; i < this.nof; i ++) {
+			sum += facilities[i].price * facilities[i].units;
+		}
+		return sum;
 	}
 	
 	/*
@@ -44,7 +48,10 @@ public class Member {
 	
 	public Member(String name) { //variable shadowing\\
 		this.name = name;
+		this.facilities = new Facility[100];
 	}
+	
+	
 	
 	//----------------------------------------------------------------------
 	// as soon as a customized constructor is declared, the default constructor is ineffective.
@@ -110,8 +117,7 @@ public class Member {
 		return this.trainer;
 	}
 	
-	
-	
+
 	/*
 	 * Mutator Methods (not returning anything; modifying attributes)  ---> Notice the public *void* meaning there's no return statement unlike previously defined ancesstor, where they must have a return statement.
 	 */
@@ -127,11 +133,17 @@ public class Member {
 		this.trainer = trainer;
 	}
 	
+	public void registerFacility(Facility facility) {  // variable shadowing
+		this.facilities[this.nof] = facility;
+		this.nof ++;
+	}
+	
 	/*
 	 *  Refer input member 'm''s trainer to the context object
 	 */
+	
 	public void referTrainer(Member m) {
-		this.trainer = m.getTrainer();
+		this.trainer = m.trainer;
 		
 	}
 	
@@ -145,12 +157,17 @@ public class Member {
 		this.trainer = m.getTrainer(); // by m.getTrainer we mean mark's trainer and we can use the acessor getTrainer to get information about his trainer which we can already see in the junit testing before that *mark* got registered for the trainer *jared* 
 		m.trainer = backup; // we use the backup value we have previously used to store the value of this.trainer which in example 1 case was alan.trainer
 	}
-	
-	
-	
+
 	public void changeTheWeightBy(double units) {
 		this.weight += units;
 	}
+	
+
+	
+	
+	
+	
+	
 	
 	
 	

@@ -34,7 +34,7 @@ public class Point {
 
 	public double getDistancesTo(Point p1, Point p2) {
 		return 
-				Math.sqrt(Math.pow(x - p1.x, 2) + Math.pow(y - p1.y, 2))
+				Math.sqrt(Math.pow(this.x - p1.x, 2) + Math.pow(y - p1.y, 2))
 				+
 				Math.sqrt(Math.pow(x - p2.x, 2) + Math.pow(y - p2.y, 2)); 
 	}

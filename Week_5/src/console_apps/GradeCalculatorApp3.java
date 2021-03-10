@@ -39,7 +39,7 @@ public class GradeCalculatorApp3 {
 			if ((i - 1) <= m) {
 				report += "\n";
 			}
-			weightedSum = weightedSum + marks * ((double)weight / 100);
+			weightedSum += marks * ((double)weight / 100);
 			i ++;
 			m ++;
 			
