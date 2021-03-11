@@ -33,7 +33,7 @@ public class Member {
 		// go over the facilities of the member, and add up the (price * unit) of each booked facility.
 		double sum = 0;
 		for (int i = 0; i < this.nof; i ++) {
-			sum += facilities[i].price * facilities[i].units;
+			sum += this.facilities[i].price * this.facilities[i].units;
 		}
 		return sum;
 	}
@@ -75,7 +75,6 @@ public class Member {
 		this.weight = weight;
 	}
 	
-
 	/*
 	 * Accessor Methods (returning some useful information)
 	 */

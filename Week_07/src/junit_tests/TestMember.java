@@ -120,7 +120,7 @@ public class TestMember {
 		alan.registerFacility(spa);
 		alan.registerFacility(tennis);
 		
-		double result = alan.getPaymentDue();
+		assertEquals(12, alan.getPaymentDue(), 0.1);
 		
 		
 		
