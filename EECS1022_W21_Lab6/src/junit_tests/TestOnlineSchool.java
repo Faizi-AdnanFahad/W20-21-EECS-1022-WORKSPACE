@@ -206,7 +206,7 @@ public class TestOnlineSchool {
 		 */
 		suyeon.addRegistration(r1);
 		suyeon.addRegistration("Heavy Metal Music");
-		
+	///////////////////////// make a new test and check what happens if you don't call getRegistration
 		assertTrue(suyeon.getRegistrations().length == 2
 				&& suyeon.getRegistrations()[0] == r1
 				&& suyeon.getRegistrations()[1].getTitle().equals("Heavy Metal Music")
@@ -388,4 +388,141 @@ public class TestOnlineSchool {
 	/* You may want to write a test similar to test03b: 
 	 * an online school can be added up to 100 participants. 
 	 */
+	
+	/*----------------------------------------------------------------*/
+	
+	// Tests added by me
+	
+	@Test
+	public void test03c() {
+		Instructor alan = new Instructor("A. Wassyng", 70130, "jackie@eecs.yorku.ca");
+		Instructor mark = new Instructor("M. Lawford", 70139, "jonathan@yorku.ca");
+		 
+		Participant suyeon = new Participant("S. Y. Lee"); 
+		/*
+		 * Length of the returned array from `getRegistrations` corresponds to
+		 * the number of registrations added by the participant so far.
+		 * See the instructions PDF regarding the max number of registrations that can be added. 
+		 */
+		Registration[] suyeonRegistrations = suyeon.getRegistrations();
+		String report = suyeon.getGPAReport();
+		
+		/* empty list of registrations to begin with */
+		assertTrue(suyeonRegistrations.length == 0); 
+		/* GPA undefined over an empty list of registrations */
+		assertEquals("No GPA available yet for S. Y. Lee", report);
+		/* non-registered courses have default marks -1 */
+		assertTrue(suyeon.marksOf("Intro. to OOP") == -1);
+		assertTrue(suyeon.marksOf("Heavy Metal Music") == -1);
+		assertTrue(suyeon.marksOf("Psychology I") == -1); 
+		
+		Registration r1 = new Registration("Intro. to OOP", alan);
+		/* add two registrations for suyeon
+		 * Hints: 
+		 * 	- Are the two `addRegistration` calls denote the same method? 
+		 *	- Or an overloaded method (i.e., methods with the same name but distinct input parameter types)?
+		 */
+		suyeon.addRegistration(r1);
+		suyeon.addRegistration("Heavy Metal Music");
+	///////////////////////// make a new test and check what happens if you don't call getRegistration
+//		assertTrue(suyeon.getRegistrations().length == 2
+//				&& suyeon.getRegistrations()[0] == r1
+//				&& suyeon.getRegistrations()[1].getTitle().equals("Heavy Metal Music")
+//				&& suyeon.getRegistrations()[1].getInstructor() == null);
+//		assertTrue(suyeon.getRegistrations()[0].getMarks() == 0);
+//		assertTrue(suyeon.getRegistrations()[1].getMarks() == 0);
+		assertTrue(suyeon.marksOf("Intro. to OOP") == 0); /* now a registered course */
+		assertTrue(suyeon.marksOf("Heavy Metal Music") == 0); /* now a registered course */
+		assertTrue(suyeon.marksOf("Psychology I") == -1); /* still a non-registered course */
+		
+		suyeon.getRegistrations()[1].setInstructor(mark);
+		
+		assertTrue(suyeon.getRegistrations()[1].getInstructor() == mark);
+		
+		/*
+		 * Notice the format of GPA report: 
+		 *  - GPA value is displayed with 1 digit after the decimal point.
+		 * 	- The comma-separated list of `GradePoint (LetterGrade)` is surrounded by curly braces.
+		 * 	- There is a space after each comma and after the colon.
+		 */
+		assertEquals("S. Y. Lee's GPA of {0 (F), 0 (F)}: 0.0", suyeon.getGPAReport());
+		
+		suyeon.updateMarks("Intro. to OOP", 61); 
+		suyeon.updateMarks("Heavy Metal Music", 79);
+		/* non-existing course -> do nothing */
+		suyeon.updateMarks("Psychology I", 89); 
+		assertTrue(suyeon.getRegistrations()[0].getMarks() == 61); /* Grade: C; GP: 6  */
+		assertTrue(suyeon.getRegistrations()[1].getMarks() == 79); /* Grade: B; GP: 7 */
+		assertTrue(suyeon.marksOf("Intro. to OOP") == 61);
+		assertTrue(suyeon.marksOf("Heavy Metal Music") == 79);
+		assertTrue(suyeon.marksOf("Psychology I") == -1);
+		/* GPA = sum of GPs divided by number of courses */
+		assertEquals("S. Y. Lee's GPA of {6 (C), 7 (B)}: 6.5", suyeon.getGPAReport()); 
+		
+		Participant yuna = new Participant("Y. Lee");
+		yuna.addRegistration(new Registration("Heavy Metal Music", mark));
+		yuna.addRegistration(new Registration("Intro. to OOP", alan));
+		/* Q. Can you understand the two occurrences of anonymous objects below? */
+		yuna.addRegistration(new Registration(
+								"Psychology I", 
+								new Instructor("Tom", 70141, "tom@yorku.ca")));
+		yuna.updateMarks("Heavy Metal Music", 85);
+		yuna.updateMarks("Intro. to OOP", 58);
+		yuna.updateMarks("Psychology I", 66);
+		
+		assertTrue(yuna.getRegistrations()[0].getMarks() == 85); /* Grade: A; GP: 8  */
+		assertTrue(yuna.getRegistrations()[1].getMarks() == 58); /* Grade: D; GP: 5 */
+		assertTrue(yuna.getRegistrations()[2].getMarks() == 66); /* Grade: C; GP: 6 */
+		assertTrue(yuna.marksOf("Heavy Metal Music") == 85);
+		assertTrue(yuna.marksOf("Intro. to OOP") == 58);
+		assertTrue(yuna.marksOf("Psychology I") == 66);
+		assertEquals("Y. Lee's GPA of {8 (A), 5 (D), 6 (C)}: 6.3", yuna.getGPAReport());
+		
+		/* Suyeon and Yuna are classmates of two courses,
+		 * but the registration objects are distinct.
+		 */
+		assertEquals(suyeon.getRegistrations()[0].getTitle(), yuna.getRegistrations()[1].getTitle());
+		assertTrue(suyeon.getRegistrations()[0] != yuna.getRegistrations()[1]);
+		assertEquals(suyeon.getRegistrations()[1].getTitle(), yuna.getRegistrations()[0].getTitle());
+		assertTrue(suyeon.getRegistrations()[1] != yuna.getRegistrations()[0]);
+		
+		/* At the end of the semester, clear registrations of students. */
+		suyeon.clearRegistrations();
+		yuna.clearRegistrations();
+		
+		assertTrue(suyeon.getRegistrations().length == 0
+				&& yuna.getRegistrations().length == 0);
+		assertTrue(suyeon.getGPAReport().equals("No GPA available yet for S. Y. Lee")
+				&& yuna.getGPAReport().equals("No GPA available yet for Y. Lee"));
+		String[] courses = {"Intro. to OOP", "Heavy Metal Music", "Psychology I", "Software Design"};
+		/* Q. Without the loop below, 
+		 * how many lines of assertions need to be written explicitly? 
+		 */
+		for(int i = 0; i < courses.length; i ++) {
+			assertTrue(suyeon.marksOf(courses[i]) == -1);
+			assertTrue(yuna.marksOf(courses[i]) == -1);
+		}
+		
+		/* Next semester, students may choose to re-take some courses. */
+		suyeon.addRegistration("Heavy Metal Music");
+		suyeon.updateMarks("Heavy Metal Music", 99);
+		
+		assertTrue(suyeon.getRegistrations().length == 1);
+		assertEquals("S. Y. Lee's GPA of {9 (A+)}: 9.0", suyeon.getGPAReport());
+		assertEquals("Heavy Metal Music has not yet been assigned an instructor", suyeon.getRegistrations()[0].getInformation());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

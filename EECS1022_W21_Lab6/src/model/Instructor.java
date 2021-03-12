@@ -1,6 +1,6 @@
 package model;
 
-public class Instructor {
+public class Instructor { // Class object created according to junit_testings
 	
 	// Attributes
 	private String prof;
@@ -34,15 +34,15 @@ public class Instructor {
 	
 	// Mutator 
 	
-	public void setName(String newProf) {
+	public void setName(String newProf) { // Used to change the course's instructor
 		this.prof = newProf;
 	}
 	
-	public void setPhoneExtension(int newExtension) {
+	public void setPhoneExtension(int newExtension) { // used to change instrucor's extension number
 		this.extension = newExtension;
 	}
 	
-	public void setEmail(String newEmail) {
+	public void setEmail(String newEmail) { // For changing email of an instructor
 		this.email = newEmail;
 	}
 	

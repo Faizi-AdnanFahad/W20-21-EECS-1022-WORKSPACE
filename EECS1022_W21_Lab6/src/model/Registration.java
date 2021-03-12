@@ -6,13 +6,12 @@ public class Registration {
 	private int marks;
 	private Instructor instructor;
 	private String[] gradeReport;
-	private String info;
 	private int gradePoint;
 	
 	
 	// Constructor
 	
-	public Registration(String course) {
+	public Registration(String course) { // registering a course
 		this.course = course;
 		this.gradeReport = new String[2];
 		
@@ -37,43 +36,36 @@ public class Registration {
 		return this.instructor;
 	}
 	
-//	// Helper Method
-//	public String[] helperGetGradeReport(String index0, String index1) {
-//		String[] result = new String[2];
-//		result[0].equals(index0);
-//		result[1].equals(index1);
-//		return result;
-//	}
+	// Helper Method: Used to avoid duplicates in the getGradReport Accessor Method below.
+	public String[] helperGetGradeReport(String index0, String index1) {
+		this.gradeReport[0] = index0;
+		this.gradeReport[1] = index1;
+		return this.gradeReport;
+	}
 	
 	public String[] getGradeReport() {
 		if (this.marks >= 90) {
-			this.gradeReport[0] = "A+";
-			this.gradeReport[1] = "Exceptional";
-			this.gradePoint = 9;
+			this.helperGetGradeReport("A+", "Exceptional");
+			this.gradePoint = 9;  // Used to to get information about the GPA report, in the GPA report in the Participant object.
 		}
 		else if (this.marks >= 80) {
-			this.gradeReport[0] = "A";
-			this.gradeReport[1] = "Excellent";
+			this.helperGetGradeReport("A", "Excellent");
 			this.gradePoint = 8;
 		}
 		else if (this.marks >= 70) {
-			this.gradeReport[0] = "B";
-			this.gradeReport[1] = "Good";
+			this.helperGetGradeReport("B", "Good");
 			this.gradePoint = 7;
 		}
 		else if (this.marks >= 60) {
-			this.gradeReport[0] = "C";
-			this.gradeReport[1] = "Competent";
+			this.helperGetGradeReport("C", "Competent");
 			this.gradePoint = 6;
 		}
 		else if (this.marks >= 50) {
-			this.gradeReport[0] = "D";
-			this.gradeReport[1] = "Passing";
+			this.helperGetGradeReport("D", "Passing");
 			this.gradePoint = 5;
 		}
 		else {
-			this.gradeReport[0] = "F";
-			this.gradeReport[1] = "Failing";
+			this.helperGetGradeReport("F", "Failing");
 			this.gradePoint = 0;
 		}
 		
@@ -97,15 +89,15 @@ public class Registration {
 	
 	// Mutator
 	
-	public void setInstructor(Instructor instructor) {
+	public void setInstructor(Instructor instructor) { // updating the instructor for a course
 		this.instructor = instructor;
 	}
 	
-	public void setMarks(int newMark) {
+	public void setMarks(int newMark) { // updating mark of a student
 		this.marks = newMark;
 	}
 	
-	public void setGradePoint(int newGradePoint) {
+	public void setGradePoint(int newGradePoint) { // used to update the gradePoint for a student
 		this.gradePoint = newGradePoint;
 	}
 
