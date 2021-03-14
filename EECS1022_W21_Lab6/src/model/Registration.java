@@ -68,7 +68,6 @@ public class Registration {
 			this.helperGetGradeReport("F", "Failing");
 			this.gradePoint = 0;
 		}
-		
 		return this.gradeReport;
 	}
 	

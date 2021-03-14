@@ -52,20 +52,7 @@ public class Member {
 	}
 	
 	
-	
-	//----------------------------------------------------------------------
-	// as soon as a customized constructor is declared, the default constructor is ineffective.
-	public Member(int id, char type, double balance) {
-		this.id = id; // LHS: 'this'.id denotes the attribute 'id', whereas RHS denotes the input parameter 'id'
-		this.type = type;
-		this.balance = balance;
-	}
-	
-	public Member(String name, int id, char type, double balance) {
-		this(id, type, balance); // calling another constructor Member(int, char, balance)
-		this.name = name;
-	}
-	//-----------------------------------------------------------------------
+//-----------------------------------------------------------------
 	
 	
 	// Constructor for only Height and Weight
@@ -142,7 +129,7 @@ public class Member {
 	 */
 	
 	public void referTrainer(Member m) {
-		this.trainer = m.trainer;
+		this.trainer = m.getTrainer(); // Or // this.trainer = m.trainer;
 		
 	}
 	

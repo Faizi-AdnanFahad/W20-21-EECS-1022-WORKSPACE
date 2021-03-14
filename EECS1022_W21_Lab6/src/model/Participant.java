@@ -57,9 +57,9 @@ public class Participant {
 		for (int i = 0; stay && i < this.count; i ++) {
 			if (this.allArray[i].getTitle().equals(courseName)) {
 				if (this.allArray[i] != null) {
-				result = this.allArray[i].getMarks();
-				stay = false;
-				found = true;
+					result = this.allArray[i].getMarks();
+					stay = false;
+					found = true;
 				}
 			}
 		}
@@ -130,4 +130,3 @@ public class Participant {
 	
 	
 }
- 

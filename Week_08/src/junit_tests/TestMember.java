@@ -25,7 +25,7 @@ public class TestMember {
 		assertEquals(3, heeyeon.getNumberOfFacilites());
 		
 	}
-	
+//	
 	@Test
 	public void test_01b() { // anonymous object (objects without name - that means that you don't store any address to any variable and you pass it to your intended position as an argument)
 //		Facility f1 = new Facility("Spinning Class", 2.5, 1);
@@ -93,12 +93,23 @@ public class TestMember {
 		heeyeon.addFacility(f2);
 		heeyeon.addFacility(f3);
 		
+		// Version 1 - Using getFacility1 and getFacilityUnit methods
 		int units = heeyeon.getFacilityUnit("Gym");
 		assertEquals(2, units);
 		
+		// Version 2 - Using getFacility2
+		int units2 = heeyeon.getFacility2("Gym");
+		assertEquals(2, units2);
+		
+		// Version 1 
 		heeyeon.extendFacilityUnits("Gym", 2);
 		assertEquals(4, heeyeon.getFacilityUnit("Gym"));
 		assertEquals(2.5 * 1 + 2.0 * 4 + 1.5 * 3, heeyeon.getPaymentDue(), 0.01);
+	
+		
+		// Version 2
+		heeyeon.extendFacilityUnits1("Gym", 2);
+		assertEquals(4, heeyeon.getFacilityUnit("Gym"));
 	}
 	
 	

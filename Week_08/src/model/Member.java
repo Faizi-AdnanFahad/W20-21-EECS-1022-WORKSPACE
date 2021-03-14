@@ -149,7 +149,7 @@ public class Member {
 	
 	public int getFacilityUnit(String name) { // Assumption: Facility names are unique
 		
-		Facility f = this.getFacility(name);
+		Facility f = this.getFacility1(name);
 		
 		int units = -1;
 		if (f != null) {
@@ -168,7 +168,8 @@ public class Member {
 	}
 
 	/* -------------------------------------------------------------------------------------------------------------------------------------- */
-	private Facility getFacility(String name) { // Helper method that is used to avoid duplicate that can occur if not used in (Accessor getFacilityUnit) and (Mutator extendFacilityUnits).
+	// Version 1 by instructor 
+	private Facility getFacility1(String name) { // Helper method that is used to avoid duplicate that can occur if not used in (Accessor getFacilityUnit) and (Mutator extendFacilityUnits).
 		Facility f = null;
 		boolean hasFound = false;
 		for (int i = 0; !hasFound && i < this.nof; i ++) {
@@ -178,6 +179,19 @@ public class Member {
 			}
 		}
 		return f;
+	}
+	
+	// Version 2
+	public int getFacility2(String name) { // Helper method that is used to avoid duplicate that can occur if not used in (Accessor getFacilityUnit) and (Mutator extendFacilityUnits).
+		int facilityUnit = 0;
+		boolean hasFound = false;
+		for (int i = 0; !hasFound && i < this.nof; i ++) {
+			if (this.facilities[i].getName().equals(name)) {
+				facilityUnit = this.facilities[i].getUnits();
+				hasFound = true;
+			}
+		}
+		return facilityUnit;
 	}
 	/* -------------------------------------------------------------------------------------------------------------------------------------- */
 	
@@ -235,8 +249,9 @@ public class Member {
 		this.addFacility(f);
 	}
 	
+	// Version 1 by instructor
 	public void extendFacilityUnits(String name, int howMany) {
-		Facility f = this.getFacility(name); // Helper Method
+		Facility f = this.getFacility1(name); // Helper Method
 		
 		if (f != null) { /* hasFound == true*/
 			f.setUnits(f.getUnits() + howMany);
@@ -245,6 +260,20 @@ public class Member {
 			// the input name denotes some facility not being added, then do nothing.
 		}
 	}
+	
+	// Version 2 by me
+		public void extendFacilityUnits1(String name, int howMany) {
+			int units = getFacility2(name);
+			boolean hasFound = false;
+			Facility f = null;
+			for (int i = 0; !hasFound && i < this.nof; i ++) {
+				if (this.facilities[i].getName().equals(name)) {
+					f = this.facilities[i];
+					hasFound = true;
+				}
+			}
+			f.setUnits(units);
+		}
 	
 	
 	
