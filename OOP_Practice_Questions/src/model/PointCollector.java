@@ -17,8 +17,9 @@ public class PointCollector {
 		this.nop ++;
 	}
 	
-	public Point[] getPointsinQudarantI() {
-		
+	
+	// Version 1 by instructor
+	public Point[] getPointsinQudarantI_01() {
 		int countI = 0;
 		
 		Point[] arrayPoints = new Point[this.nop];
@@ -39,6 +40,26 @@ public class PointCollector {
 		
 		return firstQ;
 	}
+	
+	
+	// Version 2 by instructor
+	public Point[] getPointsinQudarantI_02() {
+		int count = 0;
+		for (int i = 0; i < this.nop; i ++) {
+			if (this.points[i].getX() > 0 && this.points[i].getY() > 0) {
+				count ++;
+			}
+		}
+		
+		Point[] arrayPositive = new Point[count];
+		for (int i = 0; i < count; i ++) {
+			if (this.points[i].getX() > 0 && this.points[i].getY() > 0) {
+				arrayPositive[i] = new Point(this.points[i].getX(), this.points[i].getY());
+			}
+		}
+		return arrayPositive;
+	}
+	
 	
 	public int getNumberOfPoints() {
 		return this.nop;

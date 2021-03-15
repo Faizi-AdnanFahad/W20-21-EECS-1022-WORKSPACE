@@ -28,10 +28,16 @@ public class PointTester {
 		pc.addPoints(-3, -4);
 		assertEquals(4, pc.getNumberOfPoints());
 		
-		Point[] ps = pc.getPointsinQudarantI();
-		assertEquals(1, ps.length);
+		// Version 1 by instructor 
+		Point[] ps1 = pc.getPointsinQudarantI_01();
+		assertEquals(1, ps1.length);
 		
-		double a = ps[0].getX();
+		// Version 2 by me
+		Point[] ps2 = pc.getPointsinQudarantI_02();
+		assertEquals(1, ps2.length);
+		
+		
+		
 	
 	}
 

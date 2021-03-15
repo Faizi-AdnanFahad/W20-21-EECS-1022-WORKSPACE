@@ -18,7 +18,6 @@ public class Person {
 		this.weight = weight;
 		this.height = height;
 	}
-	
 	/*
 	 * Accessors
 	 */

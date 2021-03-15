@@ -27,11 +27,12 @@ public class PersonCollector {
 	public boolean personExists(String n) {
 		boolean found = false;
 		for(int i = 0; i < this.nop; i ++) {
-			if(this.ps[i].getName().equals(n)) { found = true; 
-			} 
+			if(this.ps[i].getName().equals(n)) { 
+				found = true; 
+			}
 		}
 		return found;
-	} 
+	}
 
 	public void changeWeightOf(String n, double w) {
 		for(int i = 0; i < this.nop; i ++) {
@@ -43,7 +44,8 @@ public class PersonCollector {
 
 	public void changeHeightOf(String n, double h) {
 		for(int i = 0; i < this.nop; i ++) {
-			if(this.ps[i].getName().equals(n)) { this.ps[i].setHeight(h); 
+			if(this.ps[i].getName().equals(n)) { 
+				this.ps[i].setHeight(h); 
 			} 
 		}
 	}
