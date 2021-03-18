@@ -25,6 +25,8 @@ public class Utilities {
 		return result;
 		}
 	
+//-----------------------------------------------------------------------------------------------------------
+	
 	// Problem: sort an array in a decreasing order?
 	public static int[] decreasing(int[] array) {
 		int[] result = null;                      // [4, 2, 3, 1]
@@ -49,6 +51,8 @@ public class Utilities {
 		return result;
 		}
 	
+//-----------------------------------------------------------------------------------------------------------
+	
 	// Problem: Sort an array in an non-descending(increasing or equal) order;
 		public static int[] nonDescending(int[] array) {
 			int[] result = null;                      // [4, 2, 2, 1]
@@ -71,6 +75,8 @@ public class Utilities {
 			return result;
 			}
 	
+//-----------------------------------------------------------------------------------------------------------
+		
 		// Problem: Sort an array in an non-descending(increasing or equal) order;
 				public static int[] nonAscending(int[] array) {
 					int[] result = null;                      // [1, 2, 2, 5]  ---> [4, 2, 2, 1]
@@ -93,6 +99,8 @@ public class Utilities {
 					return result;
 					}
 				
+//-----------------------------------------------------------------------------------------------------------
+				
 		// Problem: Given an array a of integers, how do you determine if it is sorted in a non-decreasing order?
 		public static boolean nonDecreasing(int[] array) {
 			boolean result = true; 
@@ -110,6 +118,7 @@ public class Utilities {
 			return result;
 		}
 		
+//-----------------------------------------------------------------------------------------------------------
 		// Ask the user how many integers they would like to input,
 		// prompt them accordingly, then ask them for an integer index, 
 		// and check if the number stored at that index is even (i.e., error if it is odd).
@@ -128,6 +137,8 @@ public class Utilities {
 			return result;
 		}
 		
+//-----------------------------------------------------------------------------------------------------------
+		
 		// Problem: Make an animated array
 		
 		public static String animatedArray(String[] array) {
@@ -136,8 +147,46 @@ public class Utilities {
 			return result;
 		}
 		
+//-----------------------------------------------------------------------------------------------------------
 		
+		// Problem: Return an array that contains exactly the same numbers as the given array, 
+		// but rearranged so that every 3 is immediately followed by a 4. Do not move the 3's, 
+		// but every other number may move. The array contains the same number of 3's and 4's, 
+		// every 3 has a number after it that is not a 3, and a 3 appears in the array before any 4.
 		
+		// For example:        fix34([1, 3, 1, 4])  [1, 3, 4, 1]
+		
+		public static int[] fix34(int[] nums) {
+			int[] result = new int[nums.length];
+			
+			int m = 0;
+			int i = 0;
+			boolean stay = true;
+			
+			for (; i < nums.length; i ++) {
+				if(nums[i] == 3) {
+					stay = true;
+					if (nums[i + 1] == 4) {
+						result = nums;
+					}
+					else {
+						for (; stay && m < nums.length; m ++) {
+							if(nums[m] == 4) {
+								int temp = nums[i + 1];
+								nums[i + 1] = nums[m];
+								nums[m] = temp;
+								stay = false;
+							}
+						}
+					}
+				}
+				else {
+					result = nums;
+				}
+			}
+			
+			return result;
+		}
 		
 		
 		

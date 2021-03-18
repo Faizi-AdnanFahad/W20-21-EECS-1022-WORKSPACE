@@ -180,6 +180,42 @@ class testUtilities {
 		assertEquals(true, result);
 	}
 	
+	// Tests related to fix34
+	
+	@Test
+	public void test_fix34_01() {
+		int[] input = {1, 3, 1, 4};
+		int[] result = Utilities.fix34(input);
+		int[] expected = {1, 3, 4, 1};
+		assertArrayEquals(expected, result);
+	}
+	
+	@Test
+	public void test_fix34_02() {
+		int[] input = {1, 3, 1, 4, 4, 3, 1};
+		int[] result = Utilities.fix34(input);
+		int[] expected = {1, 3, 4, 1, 1, 3, 4};
+		assertArrayEquals(expected, result);
+	}
+	
+	@Test
+	public void test_fix34_03() {
+		int[] input = {3, 2, 2, 4};
+		int[] result = Utilities.fix34(input);
+		int[] expected = {3, 4, 2, 2};
+		assertArrayEquals(expected, result);
+	}
+	
+	@Test
+	public void test_fix34_04() {
+		int[] input = {3, 2, 4};
+		int[] result = Utilities.fix34(input);
+		int[] expected = {3, 4, 2};
+		assertArrayEquals(expected, result);
+	}
+	
+	
+	
 	
 	
 	
