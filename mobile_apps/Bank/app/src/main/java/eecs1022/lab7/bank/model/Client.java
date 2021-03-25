@@ -44,10 +44,10 @@ public class Client {
     }
 
     // Helper method by me
-
     public String getName() {
         return this.name;
     }
+    public double getBalance() {return  this.balance;}
 
     /*--------------------------------------------------------------------*/
 

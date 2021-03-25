@@ -64,6 +64,8 @@ public class Bank {
     // Mutator
     public  void deposit(String name, double amount) {
         boolean found = false;
+        this.errorExist = false;
+
         for (int i = 0; i < this.numClient; i ++) {
             if (this.clients[i].getName().equals(name) && amount > 0) {
                 this.clients[i].deposit(amount); // deposits the amount to the account that matched the given argument name.
@@ -72,23 +74,39 @@ public class Bank {
             }
             else if (this.clients[i].getName().equals(name) && amount <= 0){
                 found = true;
+                break;
             }
         }
 
         if (!found){
             changeErrorMsg("Error: To-Account " + name + " does not exist");
+            this.errorExist = true;
         }
         else if (amount <= 0) {
             changeErrorMsg("Error: Non-Positive Amount");
+            this.errorExist = true;
         }
 
     }
 
     public void withdraw(String name, double amount) {
         boolean found = false;
+        this.errorExist = false;
+        Client tempClient = null;
+
         for (int i = 0; i < this.numClient; i ++) {
-            if (this.clients[i].getName().equals(name) && amount > 0) {
+            if (this.clients[i].getName().equals(name) && amount > 0 && amount < this.clients[i].getBalance()) {
                 this.clients[i].withdraw(amount); // Withdraw the amount to the account that matched the given argument name.
+                tempClient = this.clients[i];
+                found = true;
+                break;
+            }
+            else if (this.clients[i].getName().equals(name) && amount <= 0){
+                found = true;
+                break;
+            }
+            else if (this.clients[i].getName().equals(name) && amount > 0 && this.clients[i].getBalance() < amount){
+                tempClient = this.clients[i];
                 found = true;
                 break;
             }
@@ -96,35 +114,79 @@ public class Bank {
 
         if (!found){
             changeErrorMsg("Error: From-Account " + name + " does not exist");
+            this.errorExist = true;
         }
         else if (amount <= 0) {
-            changeErrorMsg("Non-Positive Amount");
+            changeErrorMsg("Error: Non-Positive Amount");
+            this.errorExist = true;
+        }
+        else if (found && (tempClient.getBalance() < amount )) {
+            changeErrorMsg("Error: Amount too large to withdraw");
+            this.errorExist = true;
         }
     }
 
     public  void transfer(String fromName, String toName, double amount) {
-        boolean found = false;
+        boolean foundFrom = false;
+        boolean foundTo = false;
+        this.errorExist = false;
+        Client tempClient = null;
+
+        // Used to find if fromName exists - and withdrawing
         for (int i = 0; i < this.numClient; i ++) {
-            if (this.clients[i].getName().equals(fromName) && amount > 0) {
+            if (this.clients[i].getName().equals(fromName) && amount > 0 && this.clients[i].getBalance() > amount) {
                 this.clients[i].withdraw(amount); // Withdraws from account --> deposits to account in line #117
-                found = true;
+                tempClient = this.clients[i];
+                foundFrom = true;
+                break;
+            }
+            else if (this.clients[i].getName().equals(fromName) && amount <= 0){
+                foundFrom = true;
+                break;
+            }
+            else if (this.clients[i].getName().equals(fromName) && amount > 0 && this.clients[i].getBalance() < amount){
+                foundFrom = true;
+                tempClient = this.clients[i];
                 break;
             }
         }
-        if (found) {
+
+
+        // Used to find if toName exists
+        for (int i = 0; i < this.numClient; i ++) {
+            if (this.clients[i].getName().equals(toName)) {
+                foundTo = true;
+                break;
+            }
+        }
+
+        // if fromName exists then it will deposit to toFrom
+        if (foundFrom && foundTo) {
             for (int i = 0; i < this.numClient; i ++) {
-                if (this.clients[i].getName().equals(toName) && amount > 0) {
+                if (this.clients[i].getName().equals(toName) && amount > 0 && tempClient.getBalance() > amount) {
                     this.clients[i].deposit(amount);
                     break;
                 }
             }
         }
 
-        if (!found){
+
+
+        if (!foundFrom){
             changeErrorMsg("Error: From-Account " + fromName + " does not exist");
+            this.errorExist = true;
+        }
+        else if (!foundTo) {
+            changeErrorMsg("Error: To-Account " + toName + " does not exist");
+            this.errorExist = true;
         }
         else if (amount <= 0) {
-            changeErrorMsg("Non-Positive Amount");
+            changeErrorMsg("Error: Non-Positive Amount");
+            this.errorExist = true;
+        }
+        else if (foundFrom && (tempClient.getBalance() < amount)) {
+            changeErrorMsg("Error: Amount too large to transfer");
+            this.errorExist = true;
         }
     }
 
