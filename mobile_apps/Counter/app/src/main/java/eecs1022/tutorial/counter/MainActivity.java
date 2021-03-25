@@ -12,7 +12,7 @@ import eecs1022.tutorial.counter.model.Counter;
 
 public class MainActivity extends AppCompatActivity {
     // Global class
-    Counter c;
+    Counter c;          // This is here because we would like to use the class Counter and this will help is to use it in the MainActivity class.
 
     // Constructor for the app
     @Override
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*---------------------------------------------------------------------------------------*/
+        // The purple colours that are used as parameters are label names from Activity_main.xml
 
         /* We need three counter methods for three buttons */
     public void computeButtonCreateCounterClicked(View view) {
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         // e.g, d = Double.parseDouble(textInitValue); if input was double
 
         // execute effects on model objects
-        c = new Counter(initValue);
+        c = new Counter(initValue);  // It creates a new instance of the c object
 
         // output to the device screen
         setContentsOfTextView(R.id.outputCounterValue,  "Counter Value: " + c.getValue());

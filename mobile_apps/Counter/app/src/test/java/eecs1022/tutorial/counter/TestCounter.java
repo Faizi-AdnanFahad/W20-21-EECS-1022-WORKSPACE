@@ -19,5 +19,8 @@ public class TestCounter {
 
         c.increment();
         assertEquals(24, c.getValue());
+
+        c.decrement();
+        assertEquals(23, c.getValue());
     }
 }
