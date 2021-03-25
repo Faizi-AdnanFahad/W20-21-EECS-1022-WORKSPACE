@@ -34,6 +34,10 @@ public class Client {
     public String[] getStatement() {
         this.statBackup = new String[this.countStat];
         for (int i = 0; i < this.countStat; i ++ ){ // statBackup array is taking non-null indices of statFullArray
+
+            String result = this.name + ": $" + String.format("%.2f",this.balance);
+            this.statFullArray[0] = result;
+
             this.statBackup[i] = this.statFullArray[i];
         }
         return this.statBackup;
