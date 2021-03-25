@@ -1,9 +1,10 @@
 package eecs1022.lab7.bank.model;
 
 public class Transaction {
+
     // Attributes
-    private String service;
-    private double amount;
+    private final String service;
+    private final double amount;
     /*--------------------------------------------------------------------*/
 
     // Constructor
@@ -11,9 +12,7 @@ public class Transaction {
         this.service = service;
         this.amount = amount;
     }
-
     /*--------------------------------------------------------------------*/
-
 
     // Accessor
     public String getStatus() {
@@ -21,12 +20,10 @@ public class Transaction {
         result = "Transaction " + this.service + ": $" + String.format("%.2f",this.amount) + "";
         return result;
     }
-
-
     /*--------------------------------------------------------------------*/
 
-
     // Mutator
+        /*NA*/
 }
 
 

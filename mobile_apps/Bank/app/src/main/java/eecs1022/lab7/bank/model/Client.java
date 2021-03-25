@@ -24,26 +24,24 @@ public class Client {
 
 
     // Accessor
-    public String getStatus() {
+    public String getStatus() {  // for the zero index to store the current balance and the client's name.
         String result = "";
         result = this.name + ": $" + String.format("%.2f",this.balance);
-        this.statFullArray[0] = result; // Because we change the 0 index regularly, that's why we haven't used this.countStat.
+        this.statFullArray[0] = result; // Because we change the index 0 regularly, that's why we haven't used this.countStat.
         return result;
     }
 
     public String[] getStatement() {
         this.statBackup = new String[this.countStat];
         for (int i = 0; i < this.countStat; i ++ ){ // statBackup array is taking non-null indices of statFullArray
-
             String result = this.name + ": $" + String.format("%.2f",this.balance);
-            this.statFullArray[0] = result;
-
-            this.statBackup[i] = this.statFullArray[i];
+            this.statFullArray[0] = result; // for changing the first index
+            this.statBackup[i] = this.statFullArray[i]; // for determining the subsequent indices
         }
         return this.statBackup;
     }
 
-    // Helper method by me
+    // Helper methods Used to retrieve name and balance
     public String getName() {
         return this.name;
     }
@@ -52,13 +50,13 @@ public class Client {
     /*--------------------------------------------------------------------*/
 
     // Mutator
-    public void deposit(double addAmount) {
+    public void deposit(double addAmount) { // Deposits money into the balance of the client
         this.balance += addAmount;
         this.statFullArray[this.countStat] = "Transaction DEPOSIT: $" + String.format("%.2f", addAmount);
         this.countStat ++;
     }
 
-    public void withdraw(double removeAmount) {
+    public void withdraw(double removeAmount) { // Withdraws money from the balance of the client
         this.balance -= removeAmount;
         this.statFullArray[this.countStat] = "Transaction WITHDRAW: $" + String.format("%.2f", removeAmount);
         this.countStat ++;

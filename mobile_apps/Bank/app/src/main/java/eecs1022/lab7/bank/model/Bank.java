@@ -3,14 +3,14 @@ package eecs1022.lab7.bank.model;
 public class Bank {
 
     // Attributes
-    private final Client[] clients;
-    private int numClient;
-    private String errorMsg;
+    private final Client[] clients; // array of up to 6 clients
+    private int numClient;  // used to store clients into the Clients[] array and to determine how many clients have been added so far.
+    private String errorMsg; // Used to determine the ERROR MESSAGE of different cases. that's why its used as global variable or attribute.
     private boolean errorExist;  // this is a very essential variable! if there's any errors in the code this will be set to true so it could be used in the getStatus method.
     /*--------------------------------------------------------------------*/
 
     // Constructor
-    public Bank() {
+    public Bank() { // Initializing
         this.clients = new Client[6]; // Max number of clients in the bank is 6
         this.errorExist = false;
     }
@@ -33,12 +33,11 @@ public class Bank {
         result = seq;
         result += "}";
 
-        if (this.errorExist) {
+        if (this.errorExist) { // if this any error existed this.errorExist boolean was set to true so it could be used here
             result = this.errorMsg;
         }
 
-        return result;
-    }
+        return result;}
 
     public String[] getStatement(String name) {
         String[] tempName = null;
@@ -46,7 +45,7 @@ public class Bank {
         for (int i = 0; i < this.numClient; i ++) {
             if (this.clients[i].getName().equals(name)) {
                 tempName = this.clients[i].getStatement();
-                found = true; // This help us determine if heeyon exists or not - mainly for the error message
+                found = true; // This help us determine if the argument name exists or not - mainly for the error message
             }
         }
 
@@ -72,7 +71,7 @@ public class Bank {
                 found = true;
                 break;
             }
-            else if (this.clients[i].getName().equals(name) && amount <= 0){
+            else if (this.clients[i].getName().equals(name) && amount <= 0){ // if the amount is negative, this could be used to make the (boolean found) true.
                 found = true;
                 break;
             }
@@ -91,17 +90,17 @@ public class Bank {
 
     public void withdraw(String name, double amount) {
         boolean found = false;
-        this.errorExist = false;
+        this.errorExist = false; // because from previous operations (this.errorExist) might have stayed true, thet's why we're making it back to false.
         Client tempClient = null;
 
         for (int i = 0; i < this.numClient; i ++) {
-            if (this.clients[i].getName().equals(name) && amount > 0 && amount < this.clients[i].getBalance()) {
+            if (this.clients[i].getName().equals(name) && amount > 0 && amount < this.clients[i].getBalance()) { // the amount that we want to withdraw should be smalled than the amount we we have in our bank account
                 this.clients[i].withdraw(amount); // Withdraw the amount to the account that matched the given argument name.
-                tempClient = this.clients[i];
+                tempClient = this.clients[i]; // storing the client so we can use it later
                 found = true;
                 break;
             }
-            else if (this.clients[i].getName().equals(name) && amount <= 0){
+            else if (this.clients[i].getName().equals(name) && amount <= 0){ // Usage: making found true in case amount <= 0
                 found = true;
                 break;
             }
@@ -130,12 +129,12 @@ public class Bank {
         boolean foundFrom = false;
         boolean foundTo = false;
         this.errorExist = false;
-        Client tempClient = null;
+        Client tempClient = null; // temporary client object used to store when the conditions are true
 
         // Used to find if fromName exists - and withdrawing
         for (int i = 0; i < this.numClient; i ++) {
             if (this.clients[i].getName().equals(fromName) && amount > 0 && this.clients[i].getBalance() > amount) {
-                this.clients[i].withdraw(amount); // Withdraws from account --> deposits to account in line #117
+                this.clients[i].withdraw(amount); // Withdraws from account --> deposits to account in line #166
                 tempClient = this.clients[i];
                 foundFrom = true;
                 break;
@@ -161,7 +160,7 @@ public class Bank {
         }
 
         // if fromName exists then it will deposit to toFrom
-        if (foundFrom && foundTo) {
+        if (foundFrom && foundTo) { // if both existed in the bank array objects as Clients
             for (int i = 0; i < this.numClient; i ++) {
                 if (this.clients[i].getName().equals(toName) && amount > 0 && tempClient.getBalance() > amount) {
                     this.clients[i].deposit(amount);
@@ -169,8 +168,6 @@ public class Bank {
                 }
             }
         }
-
-
 
         if (!foundFrom){
             changeErrorMsg("Error: From-Account " + fromName + " does not exist");
@@ -202,8 +199,8 @@ public class Bank {
                 break;
             }
         }
-        if (this.numClient < 6 && !found && balance > 0) {
-            this.clients[this.numClient] = new Client(name, balance);
+        if (this.numClient < 6 && !found && balance > 0) { // if the array has null indices, we have not founded such clients that exists and balance is positive
+            this.clients[this.numClient] = new Client(name, balance); // then add that client
             this.numClient ++;
             added = true; // If it was addition to a valid index
         }
