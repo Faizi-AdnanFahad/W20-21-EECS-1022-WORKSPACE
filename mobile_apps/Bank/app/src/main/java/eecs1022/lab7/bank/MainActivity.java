@@ -13,7 +13,7 @@ import eecs1022.lab7.bank.model.Bank;
 public class MainActivity extends AppCompatActivity {
 
     /* Hint: How do you share the same bank object between button clicks (attached with controller methods) of the app? */
-    Bank bank;
+    Bank bank; // Attribute type bank has been declared so we can use its methods here.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         /* Hint: How do you initialize an empty bank and displays its status to the output textview
          * when the app is first launched?
          */
-        bank = new Bank();
+        bank = new Bank(); // When first launched a bank with no clients added will be created.
         setContentsOfTextView(R.id.labelOutput, bank.getStatus());
 
     }
@@ -84,25 +84,42 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonConfirm(View view) {
             String inputSpinner = getItemSelected(R.id.spinnerServices);
-
+            String stringStatement = "";
             String fromName = getInputOfTextField(R.id.inputFromAccount);
+
+            // We have 4 conditions on spinner, therefore, we have apply different instructions for each one of them.
             if (inputSpinner.equals("Print Statement")) {
                 String[] fromNameStatement = bank.getStatement(fromName);
-                String inputStatement = bank.getStatus();
-                setContentsOfTextView(R.id.labelOutput, inputStatement);
+                for (int i = 0; i < fromNameStatement.length; i ++) {   // Takes the statement according to the entered name by the user, which has all the information including the balance, the withdrawal amount, and the amount that has been deposited.
+                    stringStatement += fromNameStatement[i] + "\n";
+                }
+                setContentsOfTextView(R.id.labelOutput, stringStatement);
+            }
+            else if (inputSpinner.equals("Deposit")) {
+               String nameToAccount = getInputOfTextField(R.id.inputToAccount);
+               String transacAmountString = getInputOfTextField(R.id.inputAmount);
+               double transacAmountDouble = Double.parseDouble(transacAmountString);
+               bank.deposit(nameToAccount, transacAmountDouble);
+               setContentsOfTextView(R.id.labelOutput, bank.getStatus());
+            }
+            else if (inputSpinner.equals("Withdraw")) {
+                String nameFromAccoubt = getInputOfTextField(R.id.inputFromAccount);
+                String transacAmountString = getInputOfTextField(R.id.inputAmount);
+                double transacAmountDouble = Double.parseDouble(transacAmountString);
+                bank.withdraw(nameFromAccoubt, transacAmountDouble);
+                setContentsOfTextView(R.id.labelOutput, bank.getStatus());
+            }
+            else if (inputSpinner.equals("Transfer")) {
+                String nameFrom = getInputOfTextField(R.id.inputFromAccount);
+                String nameTo = getInputOfTextField(R.id.inputToAccount);
+
+                String transacAmountString = getInputOfTextField(R.id.inputAmount);
+                double transacAmountDouble = Double.parseDouble(transacAmountString);
+
+                bank.transfer(nameFrom, nameTo, transacAmountDouble);
+                setContentsOfTextView(R.id.labelOutput, bank.getStatus());
+
             }
     }
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-

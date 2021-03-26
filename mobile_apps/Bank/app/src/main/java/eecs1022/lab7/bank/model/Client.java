@@ -10,6 +10,7 @@ public class Client {
     private String[] statFullArray; // Array used to store statements of transactions of clients as String.
     private String[] statBackup; // Will be used to take non-null indices of statFullArray
     private int countStat;
+    private Transaction transaction;
     /*--------------------------------------------------------------------*/
 
     // Constructor
@@ -52,13 +53,15 @@ public class Client {
     // Mutator
     public void deposit(double addAmount) { // Deposits money into the balance of the client
         this.balance += addAmount;
-        this.statFullArray[this.countStat] = "Transaction DEPOSIT: $" + String.format("%.2f", addAmount);
+        this.transaction = new Transaction("DEPOSIT", addAmount);
+        this.statFullArray[this.countStat] = this.transaction.getStatus();
         this.countStat ++;
     }
 
     public void withdraw(double removeAmount) { // Withdraws money from the balance of the client
         this.balance -= removeAmount;
-        this.statFullArray[this.countStat] = "Transaction WITHDRAW: $" + String.format("%.2f", removeAmount);
+        this.transaction = new Transaction("WITHDRAW", removeAmount);
+        this.statFullArray[this.countStat] = this.transaction.getStatus();
         this.countStat ++;
 
     }

@@ -265,4 +265,5 @@ public class Tests {
         String[] expectedYunaStmt3 = {"Yuna: $660.12", "Transaction DEPOSIT: $50.00", "Transaction WITHDRAW: $30.00"};
         assertArrayEquals(expectedYunaStmt3, b.getStatement("Yuna"));
     }
+
 }

@@ -4,9 +4,9 @@ public class test {
 
 	public static void main(String[] args) {
 		
-		int[] ns = {1, 3, 5, 7, 11};
-		double sum = 0;
-		
+		String name = "Adnan";
+		String name2 = "Fahad";
+		System.out.println(name + "\n" + name2);
 	}
 
 }

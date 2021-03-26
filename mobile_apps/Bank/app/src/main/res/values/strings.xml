@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Bank App - Adnan Fahad Faizi (217905928)</string>
+    <string name="app_name">Bank App - AdnanFahad Faizi (217905928)</string>
     <string-array name="services" >
         <item>Deposit</item>
         <item>Withdraw</item>

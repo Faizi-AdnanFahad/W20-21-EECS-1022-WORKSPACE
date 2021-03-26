@@ -53,6 +53,10 @@ public class Bank {
             changeErrorMsg("Error: From-Account " + name + " does not exist");
             this.errorExist = true;
         }
+
+//        for (int i = 0; i < this.numClient; i ++) {
+//            this.stringStatement += tempName[i] + "/n";
+//        }
         return  tempName;
     }
 
@@ -227,4 +231,6 @@ public class Bank {
     public void changeErrorMsg(String newError) { // vital one - used to change the error message so different error messages is covered.
         this.errorMsg = newError;
     }
-}
+
+    }
+
