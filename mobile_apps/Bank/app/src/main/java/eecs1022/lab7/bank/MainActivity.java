@@ -13,6 +13,7 @@ import eecs1022.lab7.bank.model.Bank;
 public class MainActivity extends AppCompatActivity {
 
     /* Hint: How do you share the same bank object between button clicks (attached with controller methods) of the app? */
+    Bank bank;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         /* Hint: How do you initialize an empty bank and displays its status to the output textview
          * when the app is first launched?
          */
+        bank = new Bank();
+        setContentsOfTextView(R.id.labelOutput, bank.getStatus());
+
     }
 
     /* this mutator sets the output label */
@@ -67,5 +71,38 @@ public class MainActivity extends AppCompatActivity {
      *    + Finally, display the status of the bank (in the case of a deposit, withdraw, or transfer)
      *          or the statement of an account (in the case of print statement) to the ouptut textview.
      */
+
+    public void buttonAddaNewAccount(View view) {
+        String name = getInputOfTextField(R.id.inputName); // Retrieved name.
+        String balanceString = getInputOfTextField(R.id.inputBalance); // Retrieved balance in String.
+        double balanceDouble = Double.parseDouble(balanceString); // Changing String to double
+        bank.addClient(name, balanceDouble);
+
+        String output = bank.getStatus();
+        setContentsOfTextView(R.id.labelOutput, output);
+    }
+
+    public void buttonConfirm(View view) {
+            String inputSpinner = getItemSelected(R.id.spinnerServices);
+
+            String fromName = getInputOfTextField(R.id.inputFromAccount);
+            if (inputSpinner.equals("Print Statement")) {
+                String[] fromNameStatement = bank.getStatement(fromName);
+                String inputStatement = bank.getStatus();
+                setContentsOfTextView(R.id.labelOutput, inputStatement);
+            }
+    }
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -50,8 +50,7 @@ public class Bank {
         }
 
         if (!found) {
-            String errorDoesntExits = "Error: From-Account " + name + " does not exist";
-            changeErrorMsg(errorDoesntExits);
+            changeErrorMsg("Error: From-Account " + name + " does not exist");
             this.errorExist = true;
         }
         return  tempName;
