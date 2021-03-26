@@ -10,9 +10,9 @@
         android:id="@+id/labelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="28dp"
         android:text="Name of Client:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,10 +23,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/labelName"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,10 +46,11 @@
         android:id="@+id/inputBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/inputName" />
 
@@ -56,7 +58,7 @@
         android:id="@+id/buttonAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginBottom="56dp"
         android:text="ADD A NEW ACCOUNT"
         app:layout_constraintBottom_toTopOf="@+id/labelServiceType"
@@ -68,18 +70,18 @@
         android:id="@+id/labelServiceType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="110dp"
         android:text="Service Type: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Spinner
         android:id="@+id/spinnerServices"
         android:layout_width="226dp"
         android:layout_height="28dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="40dp"
         android:layout_marginBottom="20dp"
         android:entries="@array/services"
         app:layout_constraintBottom_toTopOf="@+id/inputFromAccount"
@@ -93,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:text="From Account:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelServiceType" />
@@ -157,15 +159,12 @@
         android:id="@+id/buttonConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="181dp"
+        android:layout_marginTop="28dp"
         android:text="Confirm"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputAmount"
-        app:layout_constraintVertical_bias="0.478" />
+        app:layout_constraintTop_toBottomOf="@+id/inputAmount" />
 
     <TextView
         android:id="@+id/labelOutput"
@@ -176,5 +175,5 @@
         app:layout_constraintHorizontal_bias="0.429"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonConfirm"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.413" />
 </androidx.constraintlayout.widget.ConstraintLayout>
