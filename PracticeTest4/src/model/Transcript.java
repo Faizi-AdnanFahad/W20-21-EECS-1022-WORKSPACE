@@ -1,4 +1,4 @@
-package junit_tests;
+package model;
 
 public class Transcript {
 		// Attributes
@@ -8,7 +8,6 @@ public class Transcript {
 	
 	private String name;
 	private static int globalId = 0;
-	private String courseName2;
 	
 		// Constructor
 	public Transcript(String name) {
@@ -92,22 +91,6 @@ public class Transcript {
 		}
 	}
 	
-	// Helper Method
-	
-	public String checkCourseName(String courseName) {
-		String exist = null;
-		for (int i = 0; i < this.numR; i ++) {
-			if (this.registrations[i].getCourseName().equals(courseName)) {
-				this.courseName2 = courseName;
-				exist = "good";
-			}
-		}
-		return exist;
-	}
-	
-	public String getCourseName2() {
-		return this.courseName2;
-	}
 }	
 
 

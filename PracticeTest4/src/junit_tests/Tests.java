@@ -2,7 +2,10 @@ package junit_tests;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
-import model.*;
+import model.Registration;
+import model.RegistrationSystem;
+import model.Transcript;
+
 
 /*
  * A registration system stores a list of up to 500 transcripts. 

@@ -1,4 +1,4 @@
-package junit_tests;
+package model;
 
 public class Registration {
 	// Attributes 
