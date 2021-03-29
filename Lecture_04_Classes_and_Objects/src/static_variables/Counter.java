@@ -21,7 +21,8 @@ public class Counter {
 	/* A mutator method that changes the global
 	 * value, which is shared by all objects. */
 	public void incrementGlobal() {
-		g ++;
+		this.g ++; // warning: static g is not accessed in a static way 
+		// its better to do it this way -->  *Counter.g ++;*
 	}
 }
 
@@ -31,5 +32,5 @@ public class Counter {
 
 
 
-
+ 
 
