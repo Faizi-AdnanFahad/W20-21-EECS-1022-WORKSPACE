@@ -59,7 +59,6 @@ public class Transcript {
 		
 		return result;
 	}
-
 		
 		// Mutator
 	public void addRegistration(Registration r1) {
@@ -92,23 +91,3 @@ public class Transcript {
 	}
 	
 }	
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-

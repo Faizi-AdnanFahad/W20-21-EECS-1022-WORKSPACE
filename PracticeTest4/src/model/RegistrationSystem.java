@@ -3,16 +3,16 @@ package model;
 public class RegistrationSystem {
 	// Attributes
 	private Transcript[] transcripts;
-	private int numT;
 	private Transcript[] backupT;
+	private int numT;
 	
-		// Constructor
+	// Constructor
 	public RegistrationSystem() {
 		this.transcripts = new Transcript[500];
 		this.numT = 0;
-		
 	}
-		// Accessor
+	
+	// Accessor
 	public Transcript[] getReport() {
 		this.backupT = new Transcript[this.numT];
 		for (int i = 0; i < this.numT; i ++) {
@@ -37,30 +37,10 @@ public class RegistrationSystem {
 		return result;
 	}
 	
-		
-		// Mutator
+	// Mutator
 	public void addTranscript(Transcript transcripts) {
 		this.transcripts[this.numT] = transcripts;
 		this.numT ++;
 	}
-	
-	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 

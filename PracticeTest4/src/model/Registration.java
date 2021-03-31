@@ -1,6 +1,7 @@
 package model;
 
 public class Registration {
+	
 	// Attributes 
 	private String courseName;
 	private int numCredit;
@@ -75,11 +76,7 @@ public class Registration {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
+
 	
 	
 	// Mutator
@@ -87,32 +84,6 @@ public class Registration {
 		this.mark = newMark;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
