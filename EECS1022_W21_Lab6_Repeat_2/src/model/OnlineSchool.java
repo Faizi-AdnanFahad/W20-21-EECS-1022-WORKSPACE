@@ -44,8 +44,10 @@ public class OnlineSchool {
 	
 	// Mutator
 	public void addParticipant(Participant p) {
-		this.participants[this.nop] = p;
-		this.nop ++;
+		if (this.nop < 100) {
+			this.participants[this.nop] = p;
+			this.nop ++;
+		}	
 	}
 	
 }

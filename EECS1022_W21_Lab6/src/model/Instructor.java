@@ -46,29 +46,4 @@ public class Instructor { // Class object created according to junit_testings
 		this.email = newEmail;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
