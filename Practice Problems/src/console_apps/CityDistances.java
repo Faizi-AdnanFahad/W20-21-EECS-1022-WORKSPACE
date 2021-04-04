@@ -142,9 +142,7 @@ public class CityDistances {
 	else {
 		System.out.println(result);
 	}
-	
 		input.close();
-
 	}
-		
+	
 }

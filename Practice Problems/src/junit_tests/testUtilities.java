@@ -54,9 +54,12 @@ class testUtilities {
 		assertArrayEquals(expected, result);
 	}
 	
+	
+//-------------------------------------------------------------------------------------------------------------------
 	/*
 	 * Tests related to sorting arrays in an decreasing order.
 	 */
+	
 	@Test
 	public void test_arraydecreasing_01() {
 		int[] input = {4, 2, 3, 1};
@@ -88,6 +91,8 @@ class testUtilities {
 		int[] expected = {9, 7, 6, 3, 2};
 		assertArrayEquals(expected, result);
 	}
+	
+//-------------------------------------------------------------------------------------------------------------------
 	
 	/*
 	 * Tests related to sorting arrays in an decreasing order.
@@ -123,6 +128,8 @@ class testUtilities {
 		int[] expected = {1, 2, 3, 3, 5, 6, 6, 8, 9};
 		assertArrayEquals(expected, result);
 	}
+	
+//-------------------------------------------------------------------------------------------------------------------	
 	
 	/*
 	 * Tests related to sorting arrays in an decreasing order.
@@ -180,6 +187,8 @@ class testUtilities {
 		assertEquals(true, result);
 	}
 	
+//-------------------------------------------------------------------------------------------------------------------
+	
 	// Tests related to fix34
 	
 	@Test
@@ -214,9 +223,29 @@ class testUtilities {
 		assertArrayEquals(expected, result);
 	}
 	
+//-------------------------------------------------------------------------------------------------------------------
+	// Test related to determineDuplicate method.
 	
+	@Test
+	public void test_determine_Duplicate_01() {
+		int[] input = {3, 2, 4};
+		boolean result = Utilities.determineDuplicate(input);
+		assertEquals(false, result);
+	}
 	
+	@Test
+	public void test_determine_Duplicate_02() {
+		int[] input = {1, 3, 2, 4};
+		boolean result = Utilities.determineDuplicate(input);
+		assertEquals(false, result);
+	}
 	
+	@Test
+	public void test_determine_Duplicate_03() {
+		int[] input = {2, 3, 4, 3, 2, 4};
+		boolean result = Utilities.determineDuplicate(input);
+		assertEquals(true, result);
+	}
 	
 	
 	

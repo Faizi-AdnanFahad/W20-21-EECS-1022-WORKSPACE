@@ -189,7 +189,33 @@ public class Utilities {
 		}
 		
 		
-		
+//--------------------------------------------------------------------------------------------------------
+		/*
+		 * Return true if an array of integer contains duplicate numbers.
+		 */
+		public static boolean determineDuplicate(int[] array) {
+			boolean duplicateFound = false;
+			
+			for (int i = 0; i < array.length; i ++ ) {
+				for(int m = 0; m < array.length; m ++ ) {
+					if (m == i) {
+					}
+					else {
+						if (array[m] == array[i]) {
+							duplicateFound = true;
+							break;
+						}
+					}
+				}
+				if (duplicateFound == true) {
+					break;
+				}
+				
+			}
+			
+			
+			return duplicateFound;
+		}
 		
 		
 		
