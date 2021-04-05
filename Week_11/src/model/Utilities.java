@@ -186,7 +186,7 @@ public class Utilities {
 		
 		int maxRowSum = rowSum;
 		int rowIndex = 0; // Index of the row with maximum sum
-		
+		 
 		// Start the row with 1 since rowSum has been initialized to the sum of row 0.
 		for (int i = 1; i < a.length; i ++)  {
 			rowSum = 0;
@@ -201,23 +201,117 @@ public class Utilities {
 		return a[rowIndex];
 	}
 	
+	public static boolean areAllPositive(int[][] a) {
+		boolean allPositive = true;
+		boolean stay = true;
+		
+		for (int i = 0; stay && i < a.length; i ++) {
+			for (int m = 0; stay && m < a[i].length; m ++ ) {
+				if (a[i][m] <= 0) {
+					allPositive = false;
+					stay = false;
+				}
+			}
+		}
+		return allPositive;
+	}
+
+	public static boolean atLestOneRowAllPositive(int[][] a) {
+		boolean stay = true;
+		boolean overAlloneRowPositive = false;
+		
+		for (int i = 0; stay && i < a.length; i ++) {
+			boolean oneRowPositive = false;
+			for (int m = 0; stay && m < a[i].length; m ++ ) {
+					if (a[i][m] > 0 ) {
+						oneRowPositive = true;
+					}
+					else {
+						oneRowPositive = false;
+					}
+				}
+			if (oneRowPositive == true) {
+				overAlloneRowPositive = true;
+				stay = false;
+			}
+			else {
+				overAlloneRowPositive = false;
+			}
+			
+			}
+		
+		return overAlloneRowPositive;
+	}
 	
+	public static boolean isRectangle(int[][] a) {
+		boolean isRectangle = true;
+		int first = a[0].length;
+		boolean stay = true;
+		
+		for (int i = 1; stay && i < a.length; i ++) {
+			if (a[i].length != first) {
+				isRectangle = false;
+				stay = false;
+			}
+		}
+		return isRectangle;
+	}
+	
+	public static boolean isSquare(int[][] a ) {
+		int first = a.length;
+		boolean isSquare = true;
+		boolean stay = true;
+		
+		for (int i = 0; stay && i < a.length; i ++) {
+			if (a[i].length != first ) {
+				isSquare = false;
+				stay = false;
+			}
+		}
+		return isSquare;
+	}
+	
+	public static int lowerLeft(int[][] a) {
+		int sum = 0;
+		
+		for (int i = 0; i < a.length; i ++) {
+			for (int m = 0; m < i + 1; m ++) {
+				sum += a[i][m];
+			}
+		}
+		return sum;
+	}
+	
+	public static int upperLeft(int[][] a) {
+		int sum = 0;
+		
+		for (int i = 0 ; i < a.length; i ++) {
+			for (int m = 0; m < a.length - i ; m ++) {
+				sum += a[i][m];
+			}
+		}
+		return sum;
+	}
+	
+	public static int[] areaOfUpperAndLower(int[][] a) {
+		int sumLowerLeft = 0;
+		
+		for (int i = 0; i < a.length; i ++) {
+			for (int m = 0; m < i + 1; m ++) {
+				sumLowerLeft += a[i][m];
+			}
+		}
+		
+		int sumUpperLeft = 0;
+		
+		for (int i = 0 ; i < a.length; i ++) {
+			for (int m = 0; m < a.length - i ; m ++) {
+				sumUpperLeft += a[i][m];
+			}
+		}
+		
+		int[] result = {sumLowerLeft, sumUpperLeft};
+		
+		return result;
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

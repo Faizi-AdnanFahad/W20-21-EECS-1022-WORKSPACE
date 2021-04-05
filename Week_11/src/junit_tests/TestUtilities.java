@@ -194,4 +194,235 @@ public class TestUtilities {
 		assertArrayEquals(expected1, output1);
 	}
 	// -------------------------------------------------------------------------------------------------
+	
+	@Test
+	public void test_areAllPositive_01() {
+		int[][] input1 = {
+				{1, 10 , 5, 7 }, 
+				{6, 2 , 12 , 9},
+				{3, 8, 4, 11} 
+			};
+		
+		boolean output1 = Utilities.areAllPositive(input1);
+		boolean expected1 = true;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	@Test
+	public void  test_areAllPositive_02() {
+		int[][] input1 = {
+				{10, 10, 10 , 10}, 
+				{41},
+				{-4, 29, 13} 
+			};
+		
+		boolean output1 = Utilities.areAllPositive(input1);
+		boolean expected1 = false;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	//----------------------------------------------------------------------------------------------------------
+	
+	@Test
+	public void test_atLestOneRowAllPositive_01() {
+		int[][] input1 = {
+				{1, 10 , 5, 7 }, 
+				{6, 2 , 12 , 9},
+				{3, 8, 4, 11} 
+			};
+		
+		boolean output1 = Utilities.atLestOneRowAllPositive(input1);
+		boolean expected1 = true;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	@Test
+	public void test_atLestOneRowAllPositive_02() {
+		int[][] input1 = {
+				{1, 10 , 5, 7 , -1}, 
+				{6, -2 , 12 , 9, -2},
+				{3, 8, 4, 11},
+				{-1, 8, -9}
+			};
+		
+		boolean output1 = Utilities.atLestOneRowAllPositive(input1);
+		boolean expected1 = true;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	@Test
+	public void test_atLestOneRowAllPositive_03() {
+		int[][] input1 = {
+				{-1, -10 , -5, -7 , -1}, 
+				{-6, -2 , -12 , -9, -2},
+				{-3, -8, -4, -11},
+				{-1, -8, -9}
+			};
+		
+		boolean output1 = Utilities.atLestOneRowAllPositive(input1);
+		boolean expected1 = false;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	// -------------------------------------------------------------------------------------------
+	
+	@Test
+	public void test_isRectangle_01() {
+		int[][] input1 = {
+				{1, 10 , 5, 7 }, 
+				{6, 2 , 12 , 9},
+				{3, 8, 4, 11} 
+			};
+		
+		boolean output1 = Utilities.isRectangle(input1);
+		boolean expected1 = true;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	@Test
+	public void test_isRectangle_02() {
+		int[][] input1 = {
+				{-1, -10 , -5, -7 , -1}, 
+				{-6, -2 , -12 , -9, -2},
+				{-3, -8, -4, -11},
+				{-1, -8, -9}
+			};
+		
+		boolean output1 = Utilities.isRectangle(input1);
+		boolean expected1 = false;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	@Test
+	public void test_isSquare_01() {
+		int[][] input1 = {
+				{1, 10 , 5, 7 }, 
+				{6, 2 , 12 , 9},
+				{3, 8, 4, 11} 
+			};
+		
+		boolean output1 = Utilities.isSquare(input1);
+		boolean expected1 = false;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	@Test
+	public void test_isSquare_02() {
+		int[][] input1 = {
+				{1, 10 , 5, 7 }, 
+				{6, 2 , 12 , 9},
+				{3, 8, 4, 11},
+				{8, 3, 2, 1}
+			};
+		
+		boolean output1 = Utilities.isSquare(input1);
+		boolean expected1 = true;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	// -------------------------------------------------------------------------------------------------------------
+	
+	@Test
+	public void test_lowerLeft_01() {
+		int[][] input1 = {
+				{1, 10, 5 , 7 }, 
+				{6, 2 , 12, 9 },
+				{3, 8 , 4 , 11},
+				{8, 3 , 2 , 1 }
+			};
+		
+		int output1 = Utilities.lowerLeft(input1);
+		int expected1 = 38;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	@Test
+	public void test_lowerLeft_02() {
+		int[][] input1 = {
+				{1, 1, 1, 1}, 
+				{1, 1, 1, 1}, 
+				{1, 1, 1, 1}, 
+				{1, 1, 1, 1}
+			};
+		
+		int output1 = Utilities.lowerLeft(input1);
+		int expected1 = 10;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	// -----------------------------------------------------------------------
+	
+	@Test
+	public void test_upperLeft_01() {
+		int[][] input1 = {
+				{1, 2 , 5 , 7 }, 
+				{6, 2 , 12, 9 },
+				{3, 8 , 4 , 11},
+				{8, 3 , 2 , 1 }
+			};
+		
+		int output1 = Utilities.upperLeft(input1);
+		int expected1 = 54;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	@Test
+	public void test_upperLeft_02() {
+		int[][] input1 = {
+				{1, 1, 1, 1}, 
+				{1, 1, 1, 1}, 
+				{1, 1, 1, 1}, 
+				{1, 1, 1, 1}
+			};
+		
+		int output1 = Utilities.upperLeft(input1);
+		int expected1 = 10;
+		
+		assertEquals(expected1, output1);
+	}
+	
+	// ------------------------------------------------------------------------------------------------
+	
+	@Test
+	public void test_areaOfUpperAndLower_01() {
+		int[][] input1 = {
+				{1, 2 , 5 , 7 }, 
+				{6, 2 , 12, 9 },
+				{3, 8 , 4 , 11},
+				{8, 3 , 2 , 1 }
+			};
+		
+		int[] output1 = Utilities.areaOfUpperAndLower(input1);
+		int[] expected1 = {38 ,54};
+		
+		assertArrayEquals(expected1, output1);
+	}
+	
+	@Test
+	public void test_areaOfUpperAndLower_02() {
+		int[][] input1 = {
+				{1, 1, 1, 1}, 
+				{1, 1, 1, 1}, 
+				{1, 1, 1, 1}, 
+				{1, 1, 1, 1}
+			};
+		
+		int[] output1 = Utilities.areaOfUpperAndLower(input1);
+		int[] expected1 = {10, 10};
+		
+		assertArrayEquals(expected1, output1);
+	}
+	
 }
