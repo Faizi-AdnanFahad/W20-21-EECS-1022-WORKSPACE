@@ -4,9 +4,24 @@ public class test {
 
 	public static void main(String[] args) {
 		
-		String name = "Adnan";
-		String name2 = "Fahad";
-		System.out.println(name + "\n" + name2);
+		char[][] ns = {
+				{'0', '0', '0', '0'},
+				{'0', '0', '0', '0'},
+				{'0', '0', '0', '0'},
+				{'0', '0', '0', '0'}
+		};
+		
+		
+		for (int i = 0; i < ns.length; i ++) {
+			for (int j = 0; j < ns.length; j ++) {
+				if (j > i) {
+					System.out.print(ns[i][j]);
+				}
+				else {
+					System.out.print(" ");
+				}
+			}
+		}
 	}
 
 }

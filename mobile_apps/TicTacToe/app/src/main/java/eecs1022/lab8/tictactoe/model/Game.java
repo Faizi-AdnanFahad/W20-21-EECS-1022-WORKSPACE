@@ -68,19 +68,25 @@ public class Game {
     public String getStatus() {
         String result = this.errorMsg;
         this.CheckForTheWinner();
+        this.tieExist();
 
 
         if (!this.winnerExist) {
-            if (!this.errorExist) {
+            if (!this.errorExist && !this.tieExist) {
                 if (this.changeTurn % 2 == 0) {
                     result = this.playerX + "'s turn to play...";
                 } else if (this.changeTurn % 2 == 1) {
                     result = this.playerO + "'s turn to play...";
                 }
             }
-        } else if (this.attempt == 0) {
+            else if (tieExist && this.attempt == 0) {
+                result = "Game is over with a tie between " + this.playerX + " and " + this.playerO + ".";
+                this.attempt ++;
+            }
+        }
+        else if (this.attempt == 0 && !this.tieExist) {
             result = "Game is over with " + this.winnerName(this.winner) + " being the winner.";
-            this.attempt++;
+            this.attempt ++;
         }
 
 
@@ -105,28 +111,33 @@ public class Game {
     public void move(int row, int column) {
         this.errorExist = false;
         this.CheckForTheWinner();
+        this.tieExist();
         int temp = 9;
 
-        if (this.firstLetter == 'o' && this.changeTurn >= 9) {
+//        if (this.firstLetter == 'o' && this.changeTurn >= 9) {
+//            temp = this.changeTurn + 1;
+//            this.changeTurn ++;
+//        }
+
+        if(this.firstLetter == 'o' && this.changeTurn == 9) {
             temp = this.changeTurn + 1;
-            this.changeTurn ++;
         }
 
         if (this.winnerExist) {
             this.errorExist = true;
             this.errorMsg = "Error: game is already over with a winner.";
         }
-        else if (this.changeTurn >= temp) {
+        else if (this.tieExist) {
             this.errorExist = true; // wrong: this message should only come with all the sets were finished intially -> and at later calls name of the winners should not be there. See junit testing for more clarification.
-            this.errorMsg = "Game is over with a tie between Suyeon and Yuna.";
+            this.errorMsg = "Error: game is already over with a tie.";
 
-            if (temp == 10) {
-                if ((this.changeTurn - 1) % 2 == 0) {
-                    Game.board[row - 1][column - 1] = 'x';
-                } else if ((this.changeTurn - 1) % 2 == 1) {
-                    Game.board[row - 1][column - 1] = 'o';
-                }
-            }
+//            if (temp == 10) {
+//                if ((this.changeTurn - 1) % 2 == 0) {
+//                    Game.board[row - 1][column - 1] = 'x';
+//                } else if ((this.changeTurn - 1) % 2 == 1) {
+//                    Game.board[row - 1][column - 1] = 'o';
+//                }
+//            }
         }
         else {
             if (row < 1 || row > 3) {
@@ -227,15 +238,13 @@ public class Game {
                         stay = false;
                     }
                 }
-                if (this.winnerExist) {
-                    stay = false;
-                }
+                stay = !this.winnerExist;
             }
         }
 
         if (!this.winnerExist) { // work on your conditoins
             stay = true;
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; stay && i < 3; i++) {
                 stay = true;
                 for (int m = 0; stay && m < 3; m++) {
                     if (Game.board[i][m] == 'o') {
@@ -246,6 +255,7 @@ public class Game {
                         stay = false;
                     }
                 }
+                stay = !this.winnerExist;
 //                if (this.winnerExist) {
 //                    stay = false;
 //                }
@@ -266,9 +276,7 @@ public class Game {
                         stay = false;
                     }
                 }
-                if (this.winnerExist) {
-                    stay = false;
-                }
+                stay = !this.winnerExist;
             }
         }
 
@@ -284,9 +292,7 @@ public class Game {
                         stay = false;
                     }
                 }
-                if (this.winnerExist) {
-                    stay = false;
-                }
+                stay = !this.winnerExist;
             }
         }
     }
@@ -299,6 +305,22 @@ public class Game {
         }
         return this.winnerName;
     }
+
+    public void tieExist() {
+        this.tieExist = false;
+
+        this.CheckForTheWinner();
+        if (!this.winnerExist) {
+            if (this.firstLetter == 'x' && this.changeTurn == 9) {
+                this.tieExist = true;
+            }
+            else if(this.firstLetter == 'o' && this.changeTurn == 10) {
+                this.tieExist = true;
+            }
+        }
+    }
+
+
 }
 
 //    public void tieExist() {
