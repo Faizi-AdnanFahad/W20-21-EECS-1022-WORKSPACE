@@ -70,7 +70,6 @@ public class Game {
         this.CheckForTheWinner();
         this.tieExist();
 
-
         if (!this.winnerExist) {
             if (!this.errorExist && !this.tieExist) {
                 if (this.changeTurn % 2 == 0) {
@@ -88,15 +87,15 @@ public class Game {
             result = "Game is over with " + this.winnerName(this.winner) + " being the winner.";
             this.attempt ++;
         }
-
-
         return result;
     }
+
 
     public char[][] getBoard() {
         return Game.board;
 
     }
+
 
     // Mutator
     public void setWhoPlaysFirst(char letter) {
@@ -108,20 +107,11 @@ public class Game {
         }
     }
 
+
     public void move(int row, int column) {
         this.errorExist = false;
         this.CheckForTheWinner();
         this.tieExist();
-        int temp = 9;
-
-//        if (this.firstLetter == 'o' && this.changeTurn >= 9) {
-//            temp = this.changeTurn + 1;
-//            this.changeTurn ++;
-//        }
-
-        if(this.firstLetter == 'o' && this.changeTurn == 9) {
-            temp = this.changeTurn + 1;
-        }
 
         if (this.winnerExist) {
             this.errorExist = true;
@@ -131,13 +121,6 @@ public class Game {
             this.errorExist = true; // wrong: this message should only come with all the sets were finished intially -> and at later calls name of the winners should not be there. See junit testing for more clarification.
             this.errorMsg = "Error: game is already over with a tie.";
 
-//            if (temp == 10) {
-//                if ((this.changeTurn - 1) % 2 == 0) {
-//                    Game.board[row - 1][column - 1] = 'x';
-//                } else if ((this.changeTurn - 1) % 2 == 1) {
-//                    Game.board[row - 1][column - 1] = 'o';
-//                }
-//            }
         }
         else {
             if (row < 1 || row > 3) {
@@ -166,39 +149,64 @@ public class Game {
 
     }
 
+
     // Helper Method
     public void CheckForTheWinner() {
         boolean stay = true;
+        this.winnerExist = true;
 
         // -m Diagonal
-        for (int i = 0; stay && i < 3; i++) {
-            if (Game.board[i][i] == 'x') {
-                this.winnerExist = true;
+
+        char firstChar = 'z';
+        if (Game.board[0][0] != '_') {
+            firstChar = Game.board[0][0];
+            if(firstChar == 'x') {
                 this.winner = 'x';
-            } else {
+            }
+            else if (firstChar == 'o') {
+                this.winner = 'o';
+            }
+        }
+        else {
+            this.winnerExist = false;
+            stay = false;
+        }
+
+        for (int i = 0; stay && i < 3; i ++) {
+            if (board[i][i] != firstChar) {
                 this.winnerExist = false;
                 stay = false;
             }
         }
 
-        if (!this.winnerExist) {
-            stay = true;
-            for (int i = 0; stay && i < 3; i++) {
-                if (Game.board[i][i] == 'o') {
-                    this.winnerExist = true;
-                    this.winner = 'o';
-                } else {
-                    this.winnerExist = false;
-                    stay = false;
-                }
-            }
-        }
+//        for (int i = 0; stay && i < 3; i++) {
+//            if (Game.board[i][i] == 'x') {
+//                this.winnerExist = true;
+//                this.winner = 'x';
+//            } else {
+//                this.winnerExist = false;
+//                stay = false;
+//            }
+//        }
+//
+//        if (!this.winnerExist) {
+//            stay = true;
+//            for (int i = 0; stay && i < 3; i++) {
+//                if (Game.board[i][i] == 'o') {
+//                    this.winnerExist = true;
+//                    this.winner = 'o';
+//                } else {
+//                    this.winnerExist = false;
+//                    stay = false;
+//                }
+//            }
+//        }
 
         // --------------------------------------------------
 
         // +m  Diagonal
         if (!this.winnerExist) {
-            for (int i = 0; stay && i < 3; i++) {
+            for (int i = 0; stay && i < 3; i ++) {
                 if (Game.board[i][2 - i] == 'x') {
                     this.winnerExist = true;
                     this.winner = 'x';
@@ -297,6 +305,7 @@ public class Game {
         }
     }
 
+
     public String winnerName(char c) {
         if (c == 'x') {
             this.winnerName = this.playerX;
@@ -305,6 +314,7 @@ public class Game {
         }
         return this.winnerName;
     }
+
 
     public void tieExist() {
         this.tieExist = false;
@@ -323,21 +333,6 @@ public class Game {
 
 }
 
-//    public void tieExist() {
-//        this.CheckForTheWinner();
-//        this.tieExist = true;
-//
-//        if(!this.winnerExist) {
-//            for (int i = 0; i < 3; i ++) {
-//                for (int m = 0; m < 3;m ++) {
-//                    if (Game.board[i][m] == 'x' || Game.board[i][m] == 'o') {
-//                        this.tieExist = true;
-//                    }
-//            }
-//        }
-//
-//    }
-//}
 
 
 
