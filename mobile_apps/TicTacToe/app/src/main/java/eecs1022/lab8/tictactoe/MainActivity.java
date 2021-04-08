@@ -12,6 +12,8 @@ import eecs1022.lab8.tictactoe.model.Game;
 
 public class MainActivity extends AppCompatActivity {
 
+    Game game;
+
     /* Hint: How do you share the same game object between button clicks
      * (attached with controller methods) of the app?
      */
@@ -24,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
         /* Hint: How do you display the initial status to the output textview
          * when the app is first launched?
          */
+
+        game = new Game("", "");
+        setContentsOfTextView(R.id.outputText, "No game has been started.");
     }
 
     /* this mutator sets the output label */
@@ -67,4 +72,85 @@ public class MainActivity extends AppCompatActivity {
      *    + Then, invoke the relevant method(s) on the shared game object.
      *    + Finally, display the expected output of the game (i.e., board and status) to the ouptut textview.
      */
+
+    public void buttonStartaNewGame(View view) {
+        String playerX = getInputOfTextField(R.id.inputPlayerX);
+        String playerO = getInputOfTextField(R.id.inputPlayerO);
+
+        game = new Game(playerX, playerO);
+
+        String spinnerTurn = getItemSelected(R.id.spinnerWhoPlaysFirst);
+
+        if (spinnerTurn.equals("Player O")) {
+            game.setWhoPlaysFirst('o');
+        }
+
+        String gameBoard = "";
+
+        for (int i = 0; i < 3; i ++) {
+            for (int m = 0; m < 3; m ++) {
+                gameBoard += game.getBoard()[i][m] + " ";
+
+            }
+            gameBoard += "\n";
+        }
+
+        String output = "Current Game Board: \n" + gameBoard + "\n Current Game Status: \n" + game.getStatus();
+        setContentsOfTextView(R.id.outputText, output);
+    }
+
+    public void changeTheRowsAndColumns(View view) {
+        String rowS = getInputOfTextField(R.id.inputRow);
+        String colS = getInputOfTextField(R.id.inputCol);
+
+        int rowInt = Integer.parseInt(rowS);
+        int colInt = Integer.parseInt(colS);
+
+        game.move(rowInt, colInt);
+
+        String gameBoard = "";
+
+        for (int i = 0; i < 3; i ++) {
+            for (int m = 0; m < 3; m ++) {
+                gameBoard += game.getBoard()[i][m] + " ";
+
+            }
+            gameBoard += "\n";
+        }
+
+        String output = "Current Game Board: \n" + gameBoard + "\n Current Game Status: \n" + game.getStatus();
+        setContentsOfTextView(R.id.outputText, output);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
