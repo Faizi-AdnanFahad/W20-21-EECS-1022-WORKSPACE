@@ -118,39 +118,8 @@ public class MainActivity extends AppCompatActivity {
             gameBoard += "\n";
         }
 
-        String output = "Current Game Board: \n" + gameBoard + "\n Current Game Status: \n" + game.getStatus();
+        String output = "Current Game Board: \n" + gameBoard + "\nCurrent Game Status: \n" + game.getStatus();
         setContentsOfTextView(R.id.outputText, output);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

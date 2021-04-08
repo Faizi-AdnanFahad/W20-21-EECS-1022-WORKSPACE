@@ -7,19 +7,19 @@ public class Game {
     private String playerX;
     private String playerO;
 
-    private int changeTurn;
-    private char firstLetter;
+    private int changeTurn; // Incremented at each valid move to determine who's going to play next by taking the modulo
+    private char firstLetter; // Used to record the starting player --> it's useful because if the game starts with playerO then change'turn should be 1
 
-    private char winner;
+    private char winner; // Used to determine the winner's input character for the winnerName helper method
     private String winnerName;
     private boolean winnerExist;
     private boolean tieExist;
 
     private boolean errorExist;
     private String errorMsg;
-    private int attempt;
+    private int attempt;    // extra integer value used to determine if game had a winner or tie, it shouldn't play the same message
 
-    private static char[][] board = {
+    private static char[][] board = {  // static variable because when changes made to the char array it should be reflected to both players
             {'_', '_', '_'},
             {'_', '_', '_'},
             {'_', '_', '_'}
@@ -34,7 +34,7 @@ public class Game {
                 {'_', '_', '_'},
                 {'_', '_', '_'}
         };
-        this.firstLetter = 'x';
+        this.firstLetter = 'x'; // default startup player is playerX
     }
 
     // Accessor
@@ -51,11 +51,11 @@ public class Game {
         }
 
         if (this.firstLetter == 'x') {
-            if (this.changeTurn >= 9) {
+            if (this.changeTurn >= 9) { // used to return null if game has been already finished or it ended with a tie
                 result = null;
             }
         }
-        else if (this.firstLetter == 'o') {
+        else if (this.firstLetter == 'o') {     // used to return null if game has been already finished or it ended with a tie
             if (this.changeTurn >= 10) {
                 result = null;
             }
@@ -70,8 +70,8 @@ public class Game {
         this.CheckForTheWinner();
         this.tieExist();
 
-        if (!this.winnerExist) {
-            if (!this.errorExist && !this.tieExist) {
+        if (!this.winnerExist) {     // used to
+            if (!this.errorExist && !this.tieExist) {   // used to determine if there's no error and there's no tie at that moment the on the output the next player's turn will be displayed
                 if (this.changeTurn % 2 == 0) {
                     result = this.playerX + "'s turn to play...";
                 } else if (this.changeTurn % 2 == 1) {
@@ -80,12 +80,12 @@ public class Game {
             }
             else if (tieExist && this.attempt == 0) {
                 result = "Game is over with a tie between " + this.playerX + " and " + this.playerO + ".";
-                this.attempt ++;
+                this.attempt ++;    // this will help to increase the value of this.attempt on the next iteration and this else if condition will not be executed.
             }
         }
         else if (this.attempt == 0 && !this.tieExist) {
             result = "Game is over with " + this.winnerName(this.winner) + " being the winner.";
-            this.attempt ++;
+            this.attempt ++;    //// this will help to increase the value of this.attempt on the next iteration and this else if condition will not be executed.
         }
         return result;
     }
@@ -93,14 +93,13 @@ public class Game {
 
     public char[][] getBoard() {
         return Game.board;
-
     }
 
 
     // Mutator
     public void setWhoPlaysFirst(char letter) {
         if (letter == 'o') {
-            this.changeTurn = 1;
+            this.changeTurn = 1;    // it starts with 0 because this way the turn on the screen will be different
             this.firstLetter = 'o';
         } else if (letter == 'x') {
             this.changeTurn = 0;
@@ -110,10 +109,10 @@ public class Game {
 
     public void move(int row, int column) {
         this.errorExist = false;
-        this.CheckForTheWinner();
-        this.tieExist();
+        this.CheckForTheWinner();   // every single time a new row and column is going to be added or removed, this will be checked if there exist a winner.
+        this.tieExist();            // same goes for tie-condition
 
-        if (this.winnerExist) {
+        if (this.winnerExist) { // the errors are arranged based on the error priority table
             this.errorExist = true;
             this.errorMsg = "Error: game is already over with a winner.";
         }
@@ -151,12 +150,11 @@ public class Game {
 
 
     // Helper Method
-    public void CheckForTheWinner() {
+    public void CheckForTheWinner() {   // used to check different possibilites of checking wether there's a winner
         boolean stay = true;
         this.winnerExist = true;
 
-        // -m Diagonal
-
+        // -m Diagonal ---> checks the positive slope diagonal
         char firstChar = 'z';
         if (Game.board[0][0] != '_') {
             firstChar = Game.board[0][0];
@@ -179,33 +177,11 @@ public class Game {
             }
         }
 
-//        for (int i = 0; stay && i < 3; i++) {
-//            if (Game.board[i][i] == 'x') {
-//                this.winnerExist = true;
-//                this.winner = 'x';
-//            } else {
-//                this.winnerExist = false;
-//                stay = false;
-//            }
-//        }
-//
-//        if (!this.winnerExist) {
-//            stay = true;
-//            for (int i = 0; stay && i < 3; i++) {
-//                if (Game.board[i][i] == 'o') {
-//                    this.winnerExist = true;
-//                    this.winner = 'o';
-//                } else {
-//                    this.winnerExist = false;
-//                    stay = false;
-//                }
-//            }
-//        }
-
         // --------------------------------------------------
 
-        // +m  Diagonal
+        // +m  Diagonal ----> checks the negative slope diagonal
         if (!this.winnerExist) {
+            stay = true;
             for (int i = 0; stay && i < 3; i ++) {
                 if (Game.board[i][2 - i] == 'x') {
                     this.winnerExist = true;
@@ -250,7 +226,7 @@ public class Game {
             }
         }
 
-        if (!this.winnerExist) { // work on your conditoins
+        if (!this.winnerExist) {
             stay = true;
             for (int i = 0; stay && i < 3; i++) {
                 stay = true;
@@ -264,9 +240,6 @@ public class Game {
                     }
                 }
                 stay = !this.winnerExist;
-//                if (this.winnerExist) {
-//                    stay = false;
-//                }
             }
         }
 
@@ -330,26 +303,4 @@ public class Game {
         }
     }
 
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

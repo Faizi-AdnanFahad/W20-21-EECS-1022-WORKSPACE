@@ -827,5 +827,133 @@ public class Tests {
         assertArrayEquals(expectedBoard9, g.getBoard());
     }
 
+    @Test
+    public void test_09() {
+        Game g = new Game("Suyeon", "Yuna");
 
+        assertEquals("Suyeon", g.getCurrentPlayer());
+        assertEquals("Suyeon's turn to play...", g.getStatus());
+        char[][] expectedBoard0 = {
+                {'_', '_', '_'},
+                {'_', '_', '_'},
+                {'_', '_', '_'}
+        };
+        assertArrayEquals(expectedBoard0, g.getBoard());
+
+        g.move(1, 3); /* Yuna, player o, placed an 'o' at the specified slot. */
+
+        assertEquals("Yuna", g.getCurrentPlayer());
+        assertEquals("Yuna's turn to play...", g.getStatus());
+        char[][] expectedBoard1 = {
+                {'_', '_', 'x'},
+                {'_', '_', '_'},
+                {'_', '_', '_'}
+        };
+        assertArrayEquals(expectedBoard1, g.getBoard());
+
+        g.move(1, 1); /* Suyeon, player x, placed an 'x' at the specified slot. */
+
+        assertEquals("Suyeon", g.getCurrentPlayer());
+        assertEquals("Suyeon's turn to play...", g.getStatus());
+        char[][] expectedBoard2 = {
+                {'o', '_', 'x'},
+                {'_', '_', '_'},
+                {'_', '_', '_'}
+        };
+        assertArrayEquals(expectedBoard2, g.getBoard());
+
+        g.move(2, 2); /* Yuna, player o, place an 'o' at the specified slot. */
+
+        assertEquals("Yuna", g.getCurrentPlayer());
+        assertEquals("Yuna's turn to play...", g.getStatus());
+        char[][] expectedBoard3 = {
+                {'o', '_', 'x'},
+                {'_', 'x', '_'},
+                {'_', '_', '_'}
+        };
+        assertArrayEquals(expectedBoard3, g.getBoard());
+
+        g.move(1, 2); /* Suyeon, player x, place an 'x' at the specified slot. */
+
+        assertEquals("Suyeon", g.getCurrentPlayer());
+        assertEquals("Suyeon's turn to play...", g.getStatus());
+        char[][] expectedBoard4 = {
+                {'o', 'o', 'x'},
+                {'_', 'x', '_'},
+                {'_', '_', '_'}
+        };
+        assertArrayEquals(expectedBoard4, g.getBoard());
+
+        g.move(3, 1); /* Yuna, player o, place an 'o' at the specified slot. */
+
+        assertNull(g.getCurrentPlayer());
+        assertEquals("Game is over with Suyeon being the winner.", g.getStatus());
+        char[][] expectedBoard5 = {
+                {'o', 'o', 'x'},
+                {'_', 'x', '_'},
+                {'x', '_', '_'}
+        };
+        assertArrayEquals(expectedBoard5, g.getBoard());
+
+        g.move(1, 3); /* Suyeon, player x, place an 'x' at the specified slot. */
+
+        assertNull(g.getCurrentPlayer());
+        assertEquals("Error: game is already over with a winner.", g.getStatus());
+
+        assertArrayEquals(expectedBoard5, g.getBoard());
+
+        g.move(1, 1); /* Yuna, player o, place an 'o' at the specified slot. */
+
+        assertNull(g.getCurrentPlayer());
+        assertEquals("Error: game is already over with a winner.", g.getStatus());
+
+        assertArrayEquals(expectedBoard5, g.getBoard());
+
+        g.move(1, 2); /* Suyeon, player x, place an 'x' at the specified slot. */
+
+        /* Your app only needs to determine if there is a tie when all 9 slots on the board have been occupied.
+         * That is, there is your app need not declare a tie
+         * when it is already known that no possible subsequent moves can result in a winner.
+         */
+        assertNull(g.getCurrentPlayer());
+        assertEquals("Error: game is already over with a winner.", g.getStatus());
+
+        assertArrayEquals(expectedBoard5, g.getBoard());
+
+        g.move(3, 2); /* Yuna, player o, place an 'o' at the specified slot. */
+
+        assertNull(g.getCurrentPlayer());
+        assertEquals("Error: game is already over with a winner.", g.getStatus());
+
+        assertArrayEquals(expectedBoard5, g.getBoard());
+
+        g.move(4, -2);
+
+        assertNull(g.getCurrentPlayer()); /* No more move as the game is over. */
+        /* Refer to the error table in Lab8 PDF instructions to see
+         * which error has the highest priority.
+         */
+        assertNull(g.getCurrentPlayer());
+        assertEquals("Error: game is already over with a winner.", g.getStatus());
+        assertArrayEquals(expectedBoard5, g.getBoard());
+
+        g.move(1, -2);
+
+        assertNull(g.getCurrentPlayer()); /* No more move as the game is over. */
+        /* Refer to the error table in Lab8 PDF instructions to see
+         * which error has the highest priority.
+         */
+        assertNull(g.getCurrentPlayer());
+        assertEquals("Error: game is already over with a winner.", g.getStatus());
+        assertArrayEquals(expectedBoard5, g.getBoard());
+
+        g.move(1, 2);
+        assertNull(g.getCurrentPlayer()); /* No more move as the game is over. */
+        /* Refer to the error table in Lab8 PDF instructions to see
+         * which error has the highest priority.
+         */
+        assertNull(g.getCurrentPlayer());
+        assertEquals("Error: game is already over with a winner.", g.getStatus());
+        assertArrayEquals(expectedBoard5, g.getBoard());
+    }
 }
