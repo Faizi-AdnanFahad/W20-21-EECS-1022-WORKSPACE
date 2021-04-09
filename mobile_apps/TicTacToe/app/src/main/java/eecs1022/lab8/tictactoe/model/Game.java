@@ -25,6 +25,7 @@ public class Game {
             {'_', '_', '_'}
     };
 
+
     // Constructor
     public Game(String playerX, String playerO) {
         this.playerO = playerO;
@@ -36,6 +37,7 @@ public class Game {
         };
         this.firstLetter = 'x'; // default startup player is playerX
     }
+
 
     // Accessor
     public String getCurrentPlayer() {
@@ -54,38 +56,34 @@ public class Game {
             if (this.changeTurn >= 9) { // used to return null if game has been already finished or it ended with a tie
                 result = null;
             }
-        }
-        else if (this.firstLetter == 'o') {     // used to return null if game has been already finished or it ended with a tie
+        } else if (this.firstLetter == 'o') {     // used to return null if game has been already finished or it ended with a tie
             if (this.changeTurn >= 10) {
                 result = null;
             }
         }
-
-
         return result;
     }
+
 
     public String getStatus() {
         String result = this.errorMsg;
         this.CheckForTheWinner();
         this.tieExist();
 
-        if (!this.winnerExist) {     // used to
+        if (!this.winnerExist) {
             if (!this.errorExist && !this.tieExist) {   // used to determine if there's no error and there's no tie at that moment the on the output the next player's turn will be displayed
                 if (this.changeTurn % 2 == 0) {
                     result = this.playerX + "'s turn to play...";
                 } else if (this.changeTurn % 2 == 1) {
                     result = this.playerO + "'s turn to play...";
                 }
-            }
-            else if (tieExist && this.attempt == 0) {
+            } else if (tieExist && this.attempt == 0) {
                 result = "Game is over with a tie between " + this.playerX + " and " + this.playerO + ".";
-                this.attempt ++;    // this will help to increase the value of this.attempt on the next iteration and this else if condition will not be executed.
+                this.attempt++;    // this will help to increase the value of this.attempt on the next iteration and this else if condition will not be executed.
             }
-        }
-        else if (this.attempt == 0 && !this.tieExist) {
+        } else if (this.attempt == 0 && !this.tieExist) {
             result = "Game is over with " + this.winnerName(this.winner) + " being the winner.";
-            this.attempt ++;    //// this will help to increase the value of this.attempt on the next iteration and this else if condition will not be executed.
+            this.attempt++;    //// this will help to increase the value of this.attempt on the next iteration and this else if condition will not be executed.
         }
         return result;
     }
@@ -115,27 +113,22 @@ public class Game {
         if (this.winnerExist) { // the errors are arranged based on the error priority table
             this.errorExist = true;
             this.errorMsg = "Error: game is already over with a winner.";
-        }
-        else if (this.tieExist) {
+        } else if (this.tieExist) {
             this.errorExist = true; // wrong: this message should only come with all the sets were finished intially -> and at later calls name of the winners should not be there. See junit testing for more clarification.
             this.errorMsg = "Error: game is already over with a tie.";
 
-        }
-        else {
+        } else {
             if (row < 1 || row > 3) {
                 this.errorExist = true;
                 this.errorMsg = "Error: row " + row + " is invalid.";
-            }
-            else if (column < 1 || column > 3) {
+            } else if (column < 1 || column > 3) {
                 this.errorExist = true;
                 this.errorMsg = "Error: col " + column + " is invalid.";
-            }
-            else {
+            } else {
                 if (Game.board[row - 1][column - 1] != '_') {
                     this.errorExist = true;
                     this.errorMsg = "Error: slot @ (" + row + ", " + column + ") is already occupied.";
-                }
-                else {
+                } else {
                     if (this.changeTurn % 2 == 0) {
                         Game.board[row - 1][column - 1] = 'x';
                     } else if (this.changeTurn % 2 == 1) {
@@ -150,7 +143,7 @@ public class Game {
 
 
     // Helper Method
-    public void CheckForTheWinner() {   // used to check different possibilites of checking wether there's a winner
+    public void CheckForTheWinner() {   // used to check different possibilities of checking whether there's a winner or not.
         boolean stay = true;
         this.winnerExist = true;
 
@@ -158,19 +151,17 @@ public class Game {
         char firstChar = 'z';
         if (Game.board[0][0] != '_') {
             firstChar = Game.board[0][0];
-            if(firstChar == 'x') {
+            if (firstChar == 'x') {
                 this.winner = 'x';
-            }
-            else if (firstChar == 'o') {
+            } else if (firstChar == 'o') {
                 this.winner = 'o';
             }
-        }
-        else {
+        } else {
             this.winnerExist = false;
             stay = false;
         }
 
-        for (int i = 0; stay && i < 3; i ++) {
+        for (int i = 0; stay && i < 3; i++) {
             if (board[i][i] != firstChar) {
                 this.winnerExist = false;
                 stay = false;
@@ -182,7 +173,7 @@ public class Game {
         // +m  Diagonal ----> checks the negative slope diagonal
         if (!this.winnerExist) {
             stay = true;
-            for (int i = 0; stay && i < 3; i ++) {
+            for (int i = 0; stay && i < 3; i++) {
                 if (Game.board[i][2 - i] == 'x') {
                     this.winnerExist = true;
                     this.winner = 'x';
@@ -278,7 +269,7 @@ public class Game {
         }
     }
 
-
+    // Helper Method
     public String winnerName(char c) {
         if (c == 'x') {
             this.winnerName = this.playerX;
@@ -288,7 +279,7 @@ public class Game {
         return this.winnerName;
     }
 
-
+    // Helper Method
     public void tieExist() {
         this.tieExist = false;
 
