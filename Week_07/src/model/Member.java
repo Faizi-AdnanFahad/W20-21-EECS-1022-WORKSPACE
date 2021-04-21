@@ -23,7 +23,6 @@ public class Member {
 	/* Single-valued, reference-typed attribute */
 	Trainer trainer; // stores A SINGLE Trainer object's address
 	
-	
 	/* Multi-valued, reference-typed attribute */
 	Facility[] facilities; // stores an array of Facility object's addresses
 	int nof; /* number of facilities */
@@ -51,9 +50,7 @@ public class Member {
 		this.facilities = new Facility[100];
 	}
 	
-	
 //-----------------------------------------------------------------
-	
 	
 	// Constructor for only Height and Weight
 	// Assumptions: weight in kilograms, height in centimeters
@@ -147,29 +144,5 @@ public class Member {
 	public void changeTheWeightBy(double units) {
 		this.weight += units;
 	}
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

@@ -2,7 +2,7 @@ package console_apps;
 
 import java.util.ArrayList;
 
-public class test2 {
+public class ConsoleAppTester {
 
 	public static void main(String[] args) {
 		

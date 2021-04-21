@@ -21,7 +21,6 @@ public class SequenceApp1 {
 		String seq = Utilities.getSequence1a(ft, d, n);
 		
 		System.out.println(seq);
-
 	}
 
 }

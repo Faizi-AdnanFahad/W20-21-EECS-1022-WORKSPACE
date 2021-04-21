@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     public void buttonConfirm(View view) {
             String inputSpinner = getItemSelected(R.id.spinnerServices);
             String stringStatement = "";
-            String fromName = getInputOfTextField(R.id.inputFromAccount);
+            String fromName = getInputOfTextField(R.id.inputFromAccount); // retrieved name
 
             // We have 4 conditions on spinner, therefore, we have apply different instructions for each one of them.
             if (inputSpinner.equals("Print Statement")) {

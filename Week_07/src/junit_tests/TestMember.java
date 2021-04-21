@@ -121,28 +121,5 @@ public class TestMember {
 		alan.registerFacility(tennis);
 		
 		assertEquals(12, alan.getPaymentDue(), 0.1);
-		
-		
-		
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }

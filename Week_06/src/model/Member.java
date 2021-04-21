@@ -19,11 +19,6 @@ public class Member {
 	private double weight;
 	private double height;
 	
-	
-	
-	
-	
-	
 	/*
 	 * Constructors (create instances of the current class)      ---> For initializing 
 	 */
@@ -92,9 +87,6 @@ public class Member {
 		
 		return result;
 	}
-	
-	
-
 	
 	/*
 	 * Mutator Methods (not returning anything; modifying attributes)  ---> Notice the public *void* meaning there's no return statement unlike previously defined ancesstor, where they must have a return statement.

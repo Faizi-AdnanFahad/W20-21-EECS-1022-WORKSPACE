@@ -10,8 +10,8 @@ public class ArrayUtilities {
 		int sum = 0;
 		int i = 0;
 		int[] arraySum = new int[ns.length];
+		
 		for(;(i < ns.length);) {
-			
 			sum += ns[i]; 
 		//	sum = ns[i]; //wrong
 			arraySum[i] = sum;
@@ -37,7 +37,6 @@ public class ArrayUtilities {
 				}
 			}
 		}
-		
 		else if (a1.length > a2.length) {
 			for (int i = 0; i < (2 * a2.length); i++) {
 				if (i % 2 == 0) {
@@ -50,9 +49,8 @@ public class ArrayUtilities {
 			int m = (2 * a2.length); 
 			for (; (m < finalArray.length); m++) {
 				finalArray[m] = a1[m-a2.length];
+			}
 		}
-	}
-		
 		else if (a1.length < a2.length) {
 			for (int i = 0; i < (2 * a1.length); i++) {
 				if (i % 2 == 0) {

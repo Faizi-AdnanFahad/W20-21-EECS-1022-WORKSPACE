@@ -16,7 +16,6 @@ public class Grade {
 		if (didWell) {
 			report +="Well Done!";
 		}
-		
 		else {
 			report +="You Can Do Better Next Time!";
 		}

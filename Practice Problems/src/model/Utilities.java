@@ -217,11 +217,32 @@ public class Utilities {
 			return duplicateFound;
 		}
 		
+		public static char method(int n ) {
+			if (n >= 0 && n <= 9) {
+				return (char) ('0' + n);
+			}
+			else if (n >=10 && n <= 15) {
+				return (char) ('A' + n - 10);
+			}
+			else {
+				return '?';
+			}
+		}
 		
 		
+		public static double[] compute(int[] a, double m) {
+			double[] b = new double[2];
+			b[0] = a[0] + m + 1;
+			b[1] = a[1] + m +2;
+			return b;
+		}
 		
-		
-		
+		public static void compute(int[] a, int m) {
+			double[] b = compute(a, 2.0 + m);
+			a[0] = a[0] + m + 1;
+			a[2] = (int) b[1] + m +2;
+			a[a.length - 1]= (int) b[b.length - 1] +m;
+		}
 		
 		
 		

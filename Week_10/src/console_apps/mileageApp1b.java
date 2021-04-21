@@ -29,7 +29,7 @@ public class mileageApp1b {
 		else if (city.equals("Houston")) {
 			index = mileageApp1b.HOUSTON;
 		}
-		
+	
 		return index;
 	}
 	

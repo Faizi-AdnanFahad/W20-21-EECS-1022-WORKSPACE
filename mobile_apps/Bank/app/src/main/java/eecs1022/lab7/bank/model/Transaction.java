@@ -25,19 +25,3 @@ public class Transaction {
     // Mutator
         /*NA*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

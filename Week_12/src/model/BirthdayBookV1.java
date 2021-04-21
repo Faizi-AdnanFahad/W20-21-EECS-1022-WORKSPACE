@@ -26,7 +26,7 @@ public class BirthdayBookV1 {
 //			if (e.getName().equals(name)) {
 //				result = e.getBirthday();
 //			}
-//		}
+//		} 
 		// OR
 		
 		int indexToGet = this.helperGetIndex(name);
@@ -99,9 +99,11 @@ public class BirthdayBookV1 {
 	
 	public int helperGetIndex(String name) {
 		int index = -1;
-		for (int i = 0; i < this.imp.size(); i ++ ) {
+		boolean earlyExit = true;
+		for (int i = 0; earlyExit && i < this.imp.size(); i ++ ) {
 			if (this.imp.get(i).getName().equals(name)) {
 				index = i;
+				earlyExit = false;
 			}
 		}
 		return index;

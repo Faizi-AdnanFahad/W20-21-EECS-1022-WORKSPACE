@@ -44,7 +44,7 @@ public class testMember {
 		String alanBMI = alan.getBMIReport();
 		
 		// Initial measures
-		assertEquals(85, alan.getWeight(), 0.1);             // Just to check if they returns the correct weight and height
+		assertEquals(85, alan.getWeight(), 0.1);            // Just to check if they returns the correct weight and height
 		assertEquals(101, mark.getWeight(), 0.1);			// Just to check if they returns the correct weight and height
 		assertEquals(175, alan.getHeight(), 0.1);			// Just to check if they returns the correct weight and height
 		assertEquals(181, mark.getHeight(), 0.1);			// Just to check if they returns the correct weight and height

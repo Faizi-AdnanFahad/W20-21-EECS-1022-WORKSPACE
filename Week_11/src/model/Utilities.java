@@ -7,7 +7,7 @@ public class Utilities {
 		
 		for (int i = 0; i < a.length; i ++ ) {
 			result += "{";
-		
+			
 			//----------------------------------------
 			for (int m = 0; m < a[i].length; m ++) {
 				if (m == a[i].length - 1) {
@@ -102,7 +102,7 @@ public class Utilities {
 	
 	public static double[] getRowAverage(int[][] a) {
 		double[] avg = new double[a.length];
-	// alternative way of putting the sum
+		// alternative way of putting the sum
 		// sum = 0;
 		
 		for (int i = 0; i < a.length; i ++ ) {
@@ -203,14 +203,10 @@ public class Utilities {
 	
 	public static boolean areAllPositive(int[][] a) {
 		boolean allPositive = true;
-		boolean stay = true;
 		
-		for (int i = 0; stay && i < a.length; i ++) {
-			for (int m = 0; stay && m < a[i].length; m ++ ) {
-				if (a[i][m] <= 0) {
-					allPositive = false;
-					stay = false;
-				}
+		for (int i = 0; allPositive && i < a.length; i ++) {
+			for (int m = 0; allPositive && m < a[i].length; m ++ ) {
+				allPositive = a[i][m] > 0;
 			}
 		}
 		return allPositive;
@@ -222,15 +218,12 @@ public class Utilities {
 		
 		for (int i = 0; stay && i < a.length; i ++) {
 			boolean oneRowPositive = false;
+			
 			for (int m = 0; stay && m < a[i].length; m ++ ) {
-					if (a[i][m] > 0 ) {
-						oneRowPositive = true;
-					}
-					else {
-						oneRowPositive = false;
-					}
+				oneRowPositive = a[i][m] > 0;
 				}
-			if (oneRowPositive == true) {
+			
+			if (oneRowPositive) {
 				overAlloneRowPositive = true;
 				stay = false;
 			}
@@ -246,28 +239,22 @@ public class Utilities {
 	public static boolean isRectangle(int[][] a) {
 		boolean isRectangle = true;
 		int first = a[0].length;
-		boolean stay = true;
 		
-		for (int i = 1; stay && i < a.length; i ++) {
-			if (a[i].length != first) {
-				isRectangle = false;
-				stay = false;
-			}
+		for (int i = 1; isRectangle && i < a.length; i ++) {
+			isRectangle = a[i].length == first;
 		}
+		
 		return isRectangle;
 	}
 	
 	public static boolean isSquare(int[][] a ) {
 		int first = a.length;
 		boolean isSquare = true;
-		boolean stay = true;
 		
-		for (int i = 0; stay && i < a.length; i ++) {
-			if (a[i].length != first ) {
-				isSquare = false;
-				stay = false;
-			}
+		for (int i = 0; isSquare && i < a.length; i ++) {
+			isSquare =a[i].length == first;
 		}
+		
 		return isSquare;
 	}
 	

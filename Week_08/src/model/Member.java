@@ -275,23 +275,4 @@ public class Member {
 			f.setUnits(units);
 		}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
