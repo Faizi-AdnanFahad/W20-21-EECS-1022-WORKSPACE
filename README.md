@@ -2,3 +2,4 @@
 
   1. TicTacToe (Android Studio) 
   2. Simplified Bank App
+  3. App for calculating the total distance from travelling between cities
